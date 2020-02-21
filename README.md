@@ -60,7 +60,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- CHECKSUM-UP VERSION -->
-		<checksum-up.version>5.5</checksum-up.version>
+		<checksum-up.version>1</checksum-up.version>
 			...
 	</properties>
 			...
@@ -83,7 +83,7 @@ You can first define the version in the ext section and add than the following g
 ```
 ext {
 			...
-    checksumUpVersion = "5.5"
+    checksumUpVersion = "1"
 			...
 }
 dependencies {
