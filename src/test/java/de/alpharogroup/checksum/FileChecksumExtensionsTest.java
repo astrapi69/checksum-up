@@ -86,6 +86,9 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 
 	File testFile;
 
+	File checksumDirExtern;
+	File testFileExtern;
+
 	/**
 	 * Sets up method will be invoked before every unit test method in this class
 	 */
@@ -93,8 +96,11 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	@BeforeMethod
 	protected void setUp()
 	{
+		String checksumDirExternName = System.getProperty("user.home");
 		checksumDir = new File(getProjectDirectory(), "src/test/resources/checksum");
 		testFile = new File(checksumDir, "testReadFileInput.txt");
+		checksumDirExtern = new File( checksumDirExternName,"/apps/monero");
+		testFileExtern = new File(checksumDirExtern, "monero-linux-x64-v0.15.0.5.tar.bz2");
 	}
 
 
