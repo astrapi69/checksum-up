@@ -1,17 +1,17 @@
 /**
  * The MIT License
- *
+ * <p>
  * Copyright (C) 2015 Asterios Raptis
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
  * including without limitation the rights to use, copy, modify, merge, publish, distribute,
  * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in all copies or
  * substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
  * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
@@ -20,21 +20,20 @@
  */
 package de.alpharogroup.checksum;
 
-import static org.testng.AssertJUnit.assertEquals;
-
-import java.io.IOException;
-import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
-
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
-
 import de.alpharogroup.AbstractTestCase;
 import de.alpharogroup.crypto.algorithm.Algorithm;
 import de.alpharogroup.crypto.algorithm.HashAlgorithm;
 import de.alpharogroup.crypto.algorithm.MdAlgorithm;
 import de.alpharogroup.test.objects.Person;
 import de.alpharogroup.test.objects.enums.Gender;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * The unit test class for the class {@link ObjectChecksumExtensions}
@@ -45,11 +44,9 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ObjectChecksumExtensions#getChecksum(Serializable, boolean)}
 	 *
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	@Test
-	public void testGetChecksumObjectBoolean() throws IOException
+	@Test public void testGetChecksumObjectBoolean() throws IOException
 	{
 		long expected;
 		long actual;
@@ -70,13 +67,11 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ObjectChecksumExtensions#getChecksum(Serializable, Algorithm)}
 	 *
-	 * @throws NoSuchAlgorithmException
-	 *             is thrown if instantiation of the SecretKeyFactory object fails.
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 * @throws NoSuchAlgorithmException is thrown if instantiation of the SecretKeyFactory object fails.
+	 * @throws IOException              Signals that an I/O exception has occurred.
 	 */
-	@Test
-	public void testGetChecksumSerializableAlgorithm() throws IOException, NoSuchAlgorithmException
+	@Test public void testGetChecksumSerializableAlgorithm()
+		throws IOException, NoSuchAlgorithmException
 	{
 		String expected;
 		String actual;
@@ -134,13 +129,10 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ObjectChecksumExtensions#getChecksum(Serializable, String)}
 	 *
-	 * @throws NoSuchAlgorithmException
-	 *             is thrown if instantiation of the SecretKeyFactory object fails.
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 * @throws NoSuchAlgorithmException is thrown if instantiation of the SecretKeyFactory object fails.
+	 * @throws IOException              Signals that an I/O exception has occurred.
 	 */
-	@Test
-	public void testGetChecksumSerializableAlgorithmAsString()
+	@Test public void testGetChecksumSerializableAlgorithmAsString()
 		throws IOException, NoSuchAlgorithmException
 	{
 		String expected;
@@ -198,11 +190,9 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ObjectChecksumExtensions#getChecksum(String, Algorithm)}
 	 *
-	 * @throws NoSuchAlgorithmException
-	 *             is thrown if instantiation of the SecretKeyFactory object fails.
+	 * @throws NoSuchAlgorithmException is thrown if instantiation of the SecretKeyFactory object fails.
 	 */
-	@Test
-	public void testGetChecksumStringAlgorithm() throws NoSuchAlgorithmException
+	@Test public void testGetChecksumStringAlgorithm() throws NoSuchAlgorithmException
 	{
 		String expected;
 		String actual;
@@ -303,11 +293,9 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ObjectChecksumExtensions#getChecksum(String, String)}
 	 *
-	 * @throws NoSuchAlgorithmException
-	 *             is thrown if instantiation of the SecretKeyFactory object fails.
+	 * @throws NoSuchAlgorithmException is thrown if instantiation of the SecretKeyFactory object fails.
 	 */
-	@Test
-	public void testGetChecksumStringAlgorithmAsString() throws NoSuchAlgorithmException
+	@Test public void testGetChecksumStringAlgorithmAsString() throws NoSuchAlgorithmException
 	{
 		String expected;
 		String actual;
@@ -408,8 +396,7 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ObjectChecksumExtensions#getChecksum(String, boolean)}
 	 */
-	@Test
-	public void testGetChecksumStringBoolean()
+	@Test public void testGetChecksumStringBoolean()
 	{
 		long expected;
 		long actual;
@@ -429,8 +416,7 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ObjectChecksumExtensions}
 	 */
-	@Test
-	public void testWithBeanTester()
+	@Test public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(ObjectChecksumExtensions.class);

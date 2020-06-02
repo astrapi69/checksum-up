@@ -1,17 +1,17 @@
 /**
  * The MIT License
- *
+ * <p>
  * Copyright (C) 2015 Asterios Raptis
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
  * including without limitation the rights to use, copy, modify, merge, publish, distribute,
  * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in all copies or
  * substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
  * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
@@ -42,12 +42,10 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ByteArrayChecksumExtensions#getChecksum(byte[], Algorithm)}.
 	 *
-	 * @throws NoSuchAlgorithmException
-	 *             Is thrown if the algorithm is not supported or does not exists.
-	 *             {@link java.security.MessageDigest} object.
+	 * @throws NoSuchAlgorithmException Is thrown if the algorithm is not supported or does not exists.
+	 *                                  {@link java.security.MessageDigest} object.
 	 */
-	@Test
-	public void testGetChecksumByteArrayAlgorithm() throws NoSuchAlgorithmException
+	@Test public void testGetChecksumByteArrayAlgorithm() throws NoSuchAlgorithmException
 	{
 		String expected;
 		String actual;
@@ -63,8 +61,7 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		actualLength = actual.length();
 		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
-		actualAlgorithm = ChecksumExtensions
-			.resolveChecksumAlgorithm(actual);
+		actualAlgorithm = ChecksumExtensions.resolveChecksumAlgorithm(actual);
 		expectedAlgorithm = ChecksumAlgorithm.MD5;
 		assertEquals(expectedAlgorithm, actualAlgorithm);
 
@@ -74,8 +71,7 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		actualLength = actual.length();
 		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
-		actualAlgorithm = ChecksumExtensions
-			.resolveChecksumAlgorithm(actual);
+		actualAlgorithm = ChecksumExtensions.resolveChecksumAlgorithm(actual);
 		expectedAlgorithm = ChecksumAlgorithm.MD5;
 		assertEquals(expectedAlgorithm, actualAlgorithm);
 
@@ -85,8 +81,7 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		actualLength = actual.length();
 		expectedLength = 40;
 		assertEquals(expectedLength, actualLength);
-		actualAlgorithm = ChecksumExtensions
-			.resolveChecksumAlgorithm(actual);
+		actualAlgorithm = ChecksumExtensions.resolveChecksumAlgorithm(actual);
 		expectedAlgorithm = ChecksumAlgorithm.SHA_1;
 		assertEquals(expectedAlgorithm, actualAlgorithm);
 
@@ -96,8 +91,7 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		actualLength = actual.length();
 		expectedLength = 64;
 		assertEquals(expectedLength, actualLength);
-		actualAlgorithm = ChecksumExtensions
-			.resolveChecksumAlgorithm(actual);
+		actualAlgorithm = ChecksumExtensions.resolveChecksumAlgorithm(actual);
 		expectedAlgorithm = ChecksumAlgorithm.SHA_256;
 		assertEquals(expectedAlgorithm, actualAlgorithm);
 
@@ -107,8 +101,7 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		actualLength = actual.length();
 		expectedLength = 96;
 		assertEquals(expectedLength, actualLength);
-		actualAlgorithm = ChecksumExtensions
-			.resolveChecksumAlgorithm(actual);
+		actualAlgorithm = ChecksumExtensions.resolveChecksumAlgorithm(actual);
 		expectedAlgorithm = ChecksumAlgorithm.SHA_384;
 		assertEquals(expectedAlgorithm, actualAlgorithm);
 
@@ -118,15 +111,13 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		actualLength = actual.length();
 		expectedLength = 128;
 		assertEquals(expectedLength, actualLength);
-		actualAlgorithm = ChecksumExtensions
-			.resolveChecksumAlgorithm(actual);
+		actualAlgorithm = ChecksumExtensions.resolveChecksumAlgorithm(actual);
 		expectedAlgorithm = ChecksumAlgorithm.SHA_512;
 		assertEquals(expectedAlgorithm, actualAlgorithm);
 		actual = actualAlgorithm.getAlgorithm();
 		expected = "SHA-512";
 		assertEquals(expected, actual);
-		actualAlgorithm = ChecksumExtensions
-			.resolveChecksumAlgorithm("noChecksum");
+		actualAlgorithm = ChecksumExtensions.resolveChecksumAlgorithm("noChecksum");
 		expectedAlgorithm = ChecksumAlgorithm.UNDEFINED;
 		assertEquals(expectedAlgorithm, actualAlgorithm);
 	}
@@ -134,8 +125,7 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ChecksumExtensions#matchesMD5(String)}.
 	 */
-	@Test
-	public void testMatchesMD5()
+	@Test public void testMatchesMD5()
 	{
 		boolean expected;
 		boolean actual;
@@ -151,13 +141,11 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ChecksumExtensions#matchesSHA1(String)}.
 	 */
-	@Test
-	public void testMatchesSHA1()
+	@Test public void testMatchesSHA1()
 	{
 		boolean expected;
 		boolean actual;
-		actual = ChecksumExtensions
-			.matchesSHA1("496dfa0ecf50cc6e3eda41fd3258272c2f2f0ff1");
+		actual = ChecksumExtensions.matchesSHA1("496dfa0ecf50cc6e3eda41fd3258272c2f2f0ff1");
 		expected = true;
 		assertEquals(expected, actual);
 
@@ -169,8 +157,7 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ChecksumExtensions#matchesSHA512(String)}.
 	 */
-	@Test
-	public void testMatchesSHA512()
+	@Test public void testMatchesSHA512()
 	{
 		boolean expected;
 		boolean actual;
@@ -179,8 +166,7 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		expected = true;
 		assertEquals(expected, actual);
 
-		actual = ChecksumExtensions
-			.matchesSHA512("496dfa0ecf50cc6e3eda41fd3258272c2f2f0ff1");
+		actual = ChecksumExtensions.matchesSHA512("496dfa0ecf50cc6e3eda41fd3258272c2f2f0ff1");
 		expected = false;
 		assertEquals(expected, actual);
 	}
@@ -188,8 +174,7 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ChecksumExtensions}
 	 */
-	@Test
-	public void testWithBeanTester()
+	@Test public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(ChecksumExtensions.class);

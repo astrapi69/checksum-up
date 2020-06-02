@@ -1,17 +1,17 @@
 /**
  * The MIT License
- *
+ * <p>
  * Copyright (C) 2015 Asterios Raptis
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
  * including without limitation the rights to use, copy, modify, merge, publish, distribute,
  * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in all copies or
  * substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
  * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
@@ -20,34 +20,36 @@
  */
 package de.alpharogroup.checksum;
 
-import static org.testng.AssertJUnit.assertEquals;
+import de.alpharogroup.AbstractTestCase;
+import de.alpharogroup.crypto.algorithm.Algorithm;
+import de.alpharogroup.crypto.algorithm.HashAlgorithm;
+import de.alpharogroup.crypto.algorithm.MdAlgorithm;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import de.alpharogroup.AbstractTestCase;
-import de.alpharogroup.crypto.algorithm.Algorithm;
-import de.alpharogroup.crypto.algorithm.HashAlgorithm;
-import de.alpharogroup.crypto.algorithm.MdAlgorithm;
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * The unit test class for the class {@link FileChecksumExtensions}
  */
 public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 {
+	File checksumDir;
+	File testFile;
+	File checksumDirExtern;
+	File testFileExtern;
+
 	/**
 	 * Gets the absolute path.
 	 *
-	 * @param file
-	 *            the file
-	 * @param removeLastChar
-	 *            the remove last char
+	 * @param file           the file
+	 * @param removeLastChar the remove last char
 	 * @return the absolute path
 	 */
 	private static String getAbsolutePath(final File file, final boolean removeLastChar)
@@ -59,6 +61,7 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		}
 		return absolutePath;
 	}
+
 	/**
 	 * Gets the project directory.
 	 *
@@ -82,24 +85,15 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		return new File(projectPath);
 	}
 
-	File checksumDir;
-
-	File testFile;
-
-	File checksumDirExtern;
-	File testFileExtern;
-
 	/**
 	 * Sets up method will be invoked before every unit test method in this class
 	 */
-	@Override
-	@BeforeMethod
-	protected void setUp()
+	@Override @BeforeMethod protected void setUp()
 	{
 		String checksumDirExternName = System.getProperty("user.home");
 		checksumDir = new File(getProjectDirectory(), "src/test/resources/checksum");
 		testFile = new File(checksumDir, "testReadFileInput.txt");
-		checksumDirExtern = new File( checksumDirExternName,"/apps/monero");
+		checksumDirExtern = new File(checksumDirExternName, "/apps/monero");
 		testFileExtern = new File(checksumDirExtern, "monero-linux-x64-v0.15.0.5.tar.bz2");
 	}
 
@@ -107,11 +101,9 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link FileChecksumExtensions#getCheckSumAdler32(File)}
 	 *
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	@Test
-	public void testGetCheckSumAdler32File() throws IOException
+	@Test public void testGetCheckSumAdler32File() throws IOException
 	{
 		long expected;
 		long actual;
@@ -123,11 +115,9 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link FileChecksumExtensions#getCheckSumCRC32(File)}
 	 *
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	@Test
-	public void testGetCheckSumCRC32File() throws IOException
+	@Test public void testGetCheckSumCRC32File() throws IOException
 	{
 		long expected;
 		long actual;
@@ -139,13 +129,10 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link FileChecksumExtensions#getChecksum(File, Algorithm)}
 	 *
-	 * @throws NoSuchAlgorithmException
-	 *             is thrown if instantiation of the SecretKeyFactory object fails.
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 * @throws NoSuchAlgorithmException is thrown if instantiation of the SecretKeyFactory object fails.
+	 * @throws IOException              Signals that an I/O exception has occurred.
 	 */
-	@Test
-	public void testGetChecksumFileAlgorithm() throws NoSuchAlgorithmException, IOException
+	@Test public void testGetChecksumFileAlgorithm() throws NoSuchAlgorithmException, IOException
 	{
 		String expected;
 		String actual;
@@ -199,13 +186,10 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link FileChecksumExtensions#getChecksum(File, boolean)}
 	 *
-	 * @throws FileNotFoundException
-	 *             the file not found exception
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 * @throws FileNotFoundException the file not found exception
+	 * @throws IOException           Signals that an I/O exception has occurred.
 	 */
-	@Test
-	public void testGetChecksumFileBoolean() throws FileNotFoundException, IOException
+	@Test public void testGetChecksumFileBoolean() throws FileNotFoundException, IOException
 	{
 		long expected;
 		long actual;
@@ -223,13 +207,10 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link FileChecksumExtensions#getChecksum(File, String)}
 	 *
-	 * @throws NoSuchAlgorithmException
-	 *             is thrown if instantiation of the SecretKeyFactory object fails.
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 * @throws NoSuchAlgorithmException is thrown if instantiation of the SecretKeyFactory object fails.
+	 * @throws IOException              Signals that an I/O exception has occurred.
 	 */
-	@Test
-	public void testGetChecksumFileString() throws NoSuchAlgorithmException, IOException
+	@Test public void testGetChecksumFileString() throws NoSuchAlgorithmException, IOException
 	{
 		String expected;
 		String actual;
@@ -282,8 +263,7 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link FileChecksumExtensions}
 	 */
-	@Test
-	public void testWithBeanTester()
+	@Test public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(FileChecksumExtensions.class);

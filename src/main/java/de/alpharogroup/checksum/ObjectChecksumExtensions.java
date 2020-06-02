@@ -1,17 +1,17 @@
 /**
  * The MIT License
- *
+ * <p>
  * Copyright (C) 2015 Asterios Raptis
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
  * including without limitation the rights to use, copy, modify, merge, publish, distribute,
  * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in all copies or
  * substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
  * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
@@ -19,6 +19,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package de.alpharogroup.checksum;
+
+import de.alpharogroup.crypto.algorithm.Algorithm;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -28,16 +30,18 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
-import de.alpharogroup.crypto.algorithm.Algorithm;
-
 /**
  * The class {@link ObjectChecksumExtensions} is a utility class for computing checksum from objects
  *
- * @version 1.0
  * @author Asterios Raptis
+ * @version 1.0
  */
 public final class ObjectChecksumExtensions
 {
+	private ObjectChecksumExtensions()
+	{
+	}
+
 	/**
 	 * Gets the checksum from the given file with an instance of the given algorithm.
 	 *
@@ -70,9 +74,9 @@ public final class ObjectChecksumExtensions
 	 */
 	public static long getChecksum(final String text, final boolean crc)
 	{
-		return crc
-			? ByteArrayChecksumExtensions.getCheckSumCRC32(text.getBytes())
-			: ByteArrayChecksumExtensions.getCheckSumAdler32(text.getBytes());
+		return crc ?
+			ByteArrayChecksumExtensions.getCheckSumCRC32(text.getBytes()) :
+			ByteArrayChecksumExtensions.getCheckSumAdler32(text.getBytes());
 	}
 
 	/**
@@ -136,9 +140,9 @@ public final class ObjectChecksumExtensions
 	public static <T extends Serializable> long getChecksum(final T serializableObject,
 		final boolean crc) throws IOException
 	{
-		return crc
-			? ByteArrayChecksumExtensions.getCheckSumCRC32(toByteArray(serializableObject))
-			: ByteArrayChecksumExtensions.getCheckSumAdler32(toByteArray(serializableObject));
+		return crc ?
+			ByteArrayChecksumExtensions.getCheckSumCRC32(toByteArray(serializableObject)) :
+			ByteArrayChecksumExtensions.getCheckSumAdler32(toByteArray(serializableObject));
 	}
 
 	/**
@@ -186,10 +190,6 @@ public final class ObjectChecksumExtensions
 			objectOutputStream.flush();
 			return byteArrayOutputStream.toByteArray();
 		}
-	}
-
-	private ObjectChecksumExtensions()
-	{
 	}
 
 }
