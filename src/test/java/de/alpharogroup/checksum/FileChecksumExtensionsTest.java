@@ -149,30 +149,50 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	{
 		String expected;
 		String actual;
+		int expectedLength;
+		int actualLength;
 
 		expected = "f57f8379e8c62db6135f14d93a84ffd3";
 		actual = FileChecksumExtensions.getChecksum(testFile, MdAlgorithm.MD2);
 		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 32;
+		assertEquals(expectedLength, actualLength);
 
 		expected = "3a37a2c10a590785dbfb9ce3b15b0464";
 		actual = FileChecksumExtensions.getChecksum(testFile, MdAlgorithm.MD5);
 		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 32;
+		assertEquals(expectedLength, actualLength);
 
 		expected = "496dfa0ecf50cc6e3eda41fd3258272c2f2f0ff1";
 		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_1);
 		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 40;
+		assertEquals(expectedLength, actualLength);
 
 		expected = "94151a5c66422a9adf706937eeb7fafec25032c380b55b0e92695baf297fb747";
 		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_256);
 		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 64;
+		assertEquals(expectedLength, actualLength);
 
 		expected = "c1bc0091901a944828ca56f236f068d318086a55b96e045b1e7415df1449eb9c8e54546fec4b759ad2c6f7e3fbab7561";
 		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_384);
 		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 96;
+		assertEquals(expectedLength, actualLength);
 
 		expected = "4d0c14f299254e58dcea1f524ca08af5f0776b1f5070919a859b92c2ab350635375862ab0727fd5e34ff35da837bd836a17047544db8df63adc4912211ea7f02";
 		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_512);
 		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 128;
+		assertEquals(expectedLength, actualLength);
 
 	}
 
@@ -213,30 +233,50 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	{
 		String expected;
 		String actual;
+		int expectedLength;
+		int actualLength;
 
 		expected = "f57f8379e8c62db6135f14d93a84ffd3";
 		actual = FileChecksumExtensions.getChecksum(testFile, MdAlgorithm.MD2.getAlgorithm());
 		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 32;
+		assertEquals(expectedLength, actualLength);
 
 		expected = "3a37a2c10a590785dbfb9ce3b15b0464";
 		actual = FileChecksumExtensions.getChecksum(testFile, MdAlgorithm.MD5.getAlgorithm());
 		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 32;
+		assertEquals(expectedLength, actualLength);
 
 		expected = "496dfa0ecf50cc6e3eda41fd3258272c2f2f0ff1";
 		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_1.getAlgorithm());
 		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 40;
+		assertEquals(expectedLength, actualLength);
 
 		expected = "94151a5c66422a9adf706937eeb7fafec25032c380b55b0e92695baf297fb747";
 		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_256.getAlgorithm());
 		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 64;
+		assertEquals(expectedLength, actualLength);
 
 		expected = "c1bc0091901a944828ca56f236f068d318086a55b96e045b1e7415df1449eb9c8e54546fec4b759ad2c6f7e3fbab7561";
 		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_384.getAlgorithm());
 		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 96;
+		assertEquals(expectedLength, actualLength);
 
 		expected = "4d0c14f299254e58dcea1f524ca08af5f0776b1f5070919a859b92c2ab350635375862ab0727fd5e34ff35da837bd836a17047544db8df63adc4912211ea7f02";
 		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_512.getAlgorithm());
 		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 128;
+		assertEquals(expectedLength, actualLength);
 	}
 
 	/**

@@ -4,7 +4,9 @@
 Version 1.1-SNAPSHOT
 -------------
 
-
+ADDED:
+ 
+- created new ChecksumExtensions class for resolve the checksum algorithm
 
 Version 1
 -------------

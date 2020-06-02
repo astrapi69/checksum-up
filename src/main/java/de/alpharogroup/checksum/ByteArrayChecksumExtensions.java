@@ -26,6 +26,7 @@ import java.util.zip.Adler32;
 import java.util.zip.CRC32;
 import java.util.zip.Checksum;
 
+import de.alpharogroup.checksum.api.ChecksumAlgorithm;
 import de.alpharogroup.crypto.algorithm.Algorithm;
 
 /**
@@ -37,17 +38,6 @@ import de.alpharogroup.crypto.algorithm.Algorithm;
  */
 public final class ByteArrayChecksumExtensions
 {
-	/** The constant HEXADECIMAL_CHARACTER_CLASS. */
-	private static final String HEXADECIMAL_CHARACTER_CLASS = "[a-fA-F0-9]";
-
-	/** The constant REGEX_VALIDATION_MD5. */
-	private static final String REGEX_VALIDATION_MD5 = HEXADECIMAL_CHARACTER_CLASS + "{32}";
-
-	/** The constant REGEX_VALIDATION_SHA1. */
-	private static final String REGEX_VALIDATION_SHA1 = HEXADECIMAL_CHARACTER_CLASS + "{40}";
-
-	/** The constant REGEX_VALIDATION_SHA512. */
-	private static final String REGEX_VALIDATION_SHA512 = HEXADECIMAL_CHARACTER_CLASS + "{128}";
 
 	/**
 	 * Gets the checksum from the given byte arrays with the given algorithm
@@ -189,42 +179,6 @@ public final class ByteArrayChecksumExtensions
 		final Checksum checksum = new CRC32();
 		checksum.update(bytes, 0, bytes.length);
 		return checksum.getValue();
-	}
-
-	/**
-	 * Checks if the given value matches a MD5 value pattern.
-	 *
-	 * @param value
-	 *            the value
-	 * @return true, the given value matches a MD5 value otherwise false
-	 */
-	public static boolean matchesMD5(final String value)
-	{
-		return value.matches(REGEX_VALIDATION_MD5);
-	}
-
-	/**
-	 * Checks if the given value matches a SHA1 value pattern.
-	 *
-	 * @param value
-	 *            the value
-	 * @return true, the given value matches a SHA1 value otherwise false
-	 */
-	public static boolean matchesSHA1(final String value)
-	{
-		return value.matches(REGEX_VALIDATION_SHA1);
-	}
-
-	/**
-	 * Checks if the given value matches a SHA512 value pattern.
-	 *
-	 * @param value
-	 *            the value
-	 * @return true, the given value matches a SHA1 value otherwise false
-	 */
-	public static boolean matchesSHA512(final String value)
-	{
-		return value.matches(REGEX_VALIDATION_SHA512);
 	}
 
 	private static byte[] toByteArray(Byte[] bytes)
