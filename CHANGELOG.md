@@ -1,12 +1,17 @@
 ## Change log
 ----------------------
 
-Version 1.1-SNAPSHOT
+Version 1.1
 -------------
 
 ADDED:
  
 - created new ChecksumExtensions class for resolve the checksum algorithm
+- created new project properties
+
+CHANGED:
+
+- update gradle to new version 6.4.1
 
 Version 1
 -------------
