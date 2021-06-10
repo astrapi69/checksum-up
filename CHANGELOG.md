@@ -1,14 +1,18 @@
 ## Change log
 ----------------------
 
-Version 1.2-SNAPSHOT
+Version 1.2
 -------------
+
+CHANGED:
+
+- changed to new package io.github.astrapi69
 
 Version 1.1
 -------------
 
 ADDED:
- 
+
 - created new ChecksumExtensions class for resolve the checksum algorithm
 - created new project properties
 
