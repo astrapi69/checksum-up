@@ -12,7 +12,7 @@ plugins {
     id "java"
     id "maven-publish"
     id "signing"
-    id "com.github.ben-manes.versions" version "0.28.0"
+    id "com.github.ben-manes.versions" version "0.39.0"
     id "com.github.hierynomus.license" version "0.15.0"
 }
 
@@ -30,8 +30,8 @@ repositories {
 }
 
 dependencies {
-    compile "de.alpharogroup:crypt-api:$cryptApiVersion"
-    testCompile "de.alpharogroup:test-objects:$testObjectsVersion"
+    compile "io.github.astrapi69:crypt-api:$cryptApiVersion"
+    testCompile "io.github.astrapi69:test-objects:$testObjectsVersion"
     testCompile "org.meanbean:meanbean:$meanbeanVersion"
     testCompile "org.testng:testng:$testngVersion"
 }

@@ -6,11 +6,11 @@
 
 <div align="center">
 
-[![Build Status](https://travis-ci.org/astrapi69/checksum-up.svg?branch=develop)](https://travis-ci.org/astrapi69/checksum-up) 
+[![Build Status](https://api.travis-ci.com/astrapi69/checksum-up.svg?branch=develop)](https://travis-ci.com/github/astrapi69/checksum-up)
 [![Coverage Status](https://codecov.io/gh/astrapi69/checksum-up/branch/develop/graph/badge.svg)](https://codecov.io/gh/astrapi69/checksum-up)
-[![Open Issues](https://img.shields.io/github/issues/astrapi69/checksum-up.svg?style=flat)](https://github.com/astrapi69/checksum-up/issues) 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/checksum-up/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/checksum-up)
-[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/checksum-up.svg)](http://www.javadoc.io/doc/de.alpharogroup/checksum-up)
+[![Open Issues](https://img.shields.io/github/issues/astrapi69/checksum-up.svg?style=flat)](https://github.com/astrapi69/checksum-up/issues)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/checksum-up/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/checksum-up)
+[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/checksum-up.svg)](http://www.javadoc.io/doc/io.github.astrapi69/checksum-up)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
 
@@ -50,10 +50,12 @@ The source code comes under the liberal MIT License, making checksum-up great fo
 
 ## Maven dependency
 
-Maven dependency is now on sonatype.
-Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~de.alpharogroup~checksum-up~~~) for latest snapshots and releases.
+Maven dependency is now on sonatype. Check
+out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~checksum-up~~~)
+for latest snapshots and releases.
 
-Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of checksum-up:
+Add the following maven dependency to your project `pom.xml` if you want to import the core
+functionality of checksum-up:
 
 Than you can add the dependency to your dependencies:
 
@@ -68,7 +70,7 @@ Than you can add the dependency to your dependencies:
 			...
 			<!-- CHECKSUM-UP DEPENDENCY -->
 			<dependency>
-				<groupId>de.alpharogroup</groupId>
+				<groupId>io.github.astrapi69</groupId>
 				<artifactId>checksum-up</artifactId>
 				<version>${checksum-up.version}</version>
 			</dependency>
@@ -88,7 +90,7 @@ ext {
 }
 dependencies {
 			...
-compile("de.alpharogroup:checksum-up:$checksumUpVersion")
+implementation("io.github.astrapi69:checksum-up:$checksumUpVersion")
 			...
 }
 	
@@ -123,13 +125,13 @@ Do not hesitate to contact the checksum-up developers with your questions, conce
 
 |**Travis CI**|
 |     :---:      |
-|[![Travis CI](https://travis-ci.com/images/logos/TravisCI-Full-Color.png)](https://coveralls.io/github/astrapi69/checksum-up?branch=develop)|
+|[![Travis CI](https://travis-ci.com/images/logos/TravisCI-Full-Color.png)](https://travis-ci.com/github/astrapi69/checksum-up)|
 |Special thanks to [Travis CI](https://travis-ci.org) for providing a free continuous integration service for open source projects|
 |     <img width=1000/>     |
 
 |**Nexus Sonatype repositories**|
 |     :---:      |
-|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/de.alpharogroup/checksum-up.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~de.alpharogroup~checksum-up~~~)|
+|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/checksum-up.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~checksum-up~~~)|
 |Special thanks to [sonatype repository](https://www.sonatype.com) for providing a free maven repository service for open source projects|
 |     <img width=1000/>     |
 
@@ -141,6 +143,6 @@ Do not hesitate to contact the checksum-up developers with your questions, conce
 
 |**javadoc.io**|
 |     :---:      |
-|[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/checksum-up.svg)](http://www.javadoc.io/doc/de.alpharogroup/checksum-up)|
+|[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/checksum-up.svg)](http://www.javadoc.io/doc/io.github.astrapi69/checksum-up)|
 |Special thanks to [javadoc.io](http://www.javadoc.io) for providing a free javadoc documentation for open source projects|
 |     <img width=1000/>     |
