@@ -18,9 +18,9 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.checksum;
+package io.github.astrapi69.checksum;
 
-import de.alpharogroup.crypto.algorithm.Algorithm;
+import io.github.astrapi69.crypto.algorithm.Algorithm;
 
 import java.io.File;
 import java.io.FileInputStream;

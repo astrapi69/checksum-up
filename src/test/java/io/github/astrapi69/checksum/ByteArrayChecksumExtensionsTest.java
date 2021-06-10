@@ -18,12 +18,12 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.checksum;
+package io.github.astrapi69.checksum;
 
-import de.alpharogroup.AbstractTestCase;
-import de.alpharogroup.crypto.algorithm.Algorithm;
-import de.alpharogroup.crypto.algorithm.HashAlgorithm;
-import de.alpharogroup.crypto.algorithm.MdAlgorithm;
+import io.github.astrapi69.AbstractTestCase;
+import io.github.astrapi69.crypto.algorithm.Algorithm;
+import io.github.astrapi69.crypto.algorithm.HashAlgorithm;
+import io.github.astrapi69.crypto.algorithm.MdAlgorithm;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
