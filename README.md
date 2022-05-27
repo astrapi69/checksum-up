@@ -1,21 +1,50 @@
 # Overview
 
-<div align="center">
+<div style="text-align: center">
 
-[![Build Status](https://api.travis-ci.com/astrapi69/checksum-up.svg?branch=develop)](https://travis-ci.com/github/astrapi69/checksum-up)
+[![Java CI with Gradle](https://github.com/astrapi69/checksum-up/actions/workflows/gradle.yml/badge.svg)](https://github.com/astrapi69/checksum-up/actions/workflows/gradle.yml)
 [![Coverage Status](https://codecov.io/gh/astrapi69/checksum-up/branch/develop/graph/badge.svg)](https://codecov.io/gh/astrapi69/checksum-up)
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/checksum-up.svg?style=flat)](https://github.com/astrapi69/checksum-up/issues)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/checksum-up/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/checksum-up)
 [![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/checksum-up.svg)](http://www.javadoc.io/doc/io.github.astrapi69/checksum-up)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
+[![Hits Of Code](https://hitsofcode.com/github/astrapi69/checksum-up?branch=develop)](https://hitsofcode.com/github/astrapi69/checksum-up/view?branch=develop)
+[![Lines Of Code](https://tokei.rs/b1/github/astrapi69/checksum-up)](https://github.com/astrapi69/checksum-up)
 
 </div>
 
 Utility library that provides utility classes for calculate checksums for files, byte arrays and
 objects
 
-If you like this project put a ⭐ and donate
+> Please support this project by simply putting a Github <!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/astrapi69/checksum-up" data-icon="octicon-star" aria-label="Star astrapi69/checksum-up on GitHub">Star ⭐</a>
+>
+> Share this library with friends on Twitter and everywhere else you can
+>
+> If you love this project [![donation](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
+
+## gradle dependency
+
+You can first define the version in the ext section and add than the following gradle dependency to
+your project `build.gradle` if you want to import the core functionality of checksum-up:
+
+define version in file gradle.properties
+```
+checksumUpVersion=1.2
+```
+
+or in build.gradle ext area
+
+```
+    checksumUpVersion = '1.2'
+```
+
+and than add the dependency to the dependencies area
+
+```
+implementation("io.github.astrapi69:checksum-up:$checksumUpVersion")
+```
 
 ## Maven dependency
 
@@ -45,28 +74,6 @@ Than you can add the dependency to your dependencies:
             </dependency>
             ...
         </dependencies>
-
-## gradle dependency
-
-You can first define the version in the ext section and add than the following gradle dependency to
-your project `build.gradle` if you want to import the core functionality of checksum-up:
-
-define version in file gradle.properties
-```
-checksumUpVersion=1.2
-```
-
-or in build.gradle ext area
-
-```
-    checksumUpVersion = '1.2'
-```
-
-and than add the dependency to the dependencies area
-
-```
-implementation("io.github.astrapi69:checksum-up:$checksumUpVersion")
-```
 
 # Donations
 
