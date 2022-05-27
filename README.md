@@ -31,13 +31,13 @@ your project `build.gradle` if you want to import the core functionality of chec
 
 define version in file gradle.properties
 ```
-checksumUpVersion=1.2
+checksumUpVersion=1.3
 ```
 
 or in build.gradle ext area
 
 ```
-    checksumUpVersion = '1.2'
+    checksumUpVersion = '1.3'
 ```
 
 and than add the dependency to the dependencies area
@@ -60,7 +60,7 @@ Than you can add the dependency to your dependencies:
     <properties>
             ...
         <!-- CHECKSUM-UP VERSION -->
-        <checksum-up.version>1.2</checksum-up.version>
+        <checksum-up.version>1.3~~~~</checksum-up.version>
             ...
     </properties>
             ...
@@ -136,7 +136,7 @@ alt="Donation Monero Wallet" width="250"/>
 or over flattr:
 
 <a href="http://flattr.com/thing/4067696/astrapi69checksum-up-on-GitHub" target="_blank">
-<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" />
+<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" style="border: none"  />
 </a>
 
 ## Note
@@ -173,12 +173,6 @@ Do not hesitate to contact the checksum-up developers with your questions, conce
 - Feature requests, questions and bug reports can be reported at the [issues page](https://github.com/astrapi69/checksum-up/issues).
 
 ## Credits
-
-|**Travis CI**|
-|     :---:      |
-|[![Travis CI](https://travis-ci.com/images/logos/TravisCI-Full-Color.png)](https://travis-ci.com/github/astrapi69/checksum-up)|
-|Special thanks to [Travis CI](https://travis-ci.org) for providing a free continuous integration service for open source projects|
-|     <img width=1000/>     |
 
 |**Nexus Sonatype repositories**|
 |     :---:      |

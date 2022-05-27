@@ -1,8 +1,13 @@
 ## Change log
 ----------------------
 
-Version 1.3-SNAPSHOT
+Version 1.3
 -------------
+
+CHANGED:
+
+- update gradle to new version 7.4.2
+- added github action for gradle ci build
 
 Version 1.2
 -------------
