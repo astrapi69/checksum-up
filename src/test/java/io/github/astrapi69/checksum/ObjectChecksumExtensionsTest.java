@@ -33,8 +33,8 @@ import io.github.astrapi69.AbstractTestCase;
 import io.github.astrapi69.crypto.algorithm.Algorithm;
 import io.github.astrapi69.crypto.algorithm.HashAlgorithm;
 import io.github.astrapi69.crypto.algorithm.MdAlgorithm;
-import io.github.astrapi69.test.objects.Person;
-import io.github.astrapi69.test.objects.enums.Gender;
+import io.github.astrapi69.test.object.Person;
+import io.github.astrapi69.test.object.enumtype.Gender;
 
 /**
  * The unit test class for the class {@link ObjectChecksumExtensions}
@@ -58,11 +58,11 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		person = Person.builder().gender(Gender.FEMALE).name("Anna").married(false)
 			.about("I'm a beast and beautiful").nickname("beast").build();
 
-		expected = 2330479854L;
+		expected = 3997012083L;
 		actual = ObjectChecksumExtensions.getChecksum(person, true);
 		assertEquals(expected, actual);
 
-		expected = 596278312L;
+		expected = 3415178608L;
 		actual = ObjectChecksumExtensions.getChecksum(person, false);
 		assertEquals(expected, actual);
 	}
@@ -87,42 +87,42 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		person = Person.builder().gender(Gender.FEMALE).name("Anna").married(false)
 			.about("I'm a beast and beautiful").nickname("beast").build();
 
-		expected = "acd62e32794c8606ed2185dd4a89ab7e";
+		expected = "b1def362c48394716231bb7e42c14b3c";
 		actual = ObjectChecksumExtensions.getChecksum(person, MdAlgorithm.MD2);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "fa87da71f43072e8fbb0b785b19b0987";
+		expected = "6b80d6c08539433402f8b11775854717";
 		actual = ObjectChecksumExtensions.getChecksum(person, MdAlgorithm.MD5);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "b320d869739da2bf7ab19c37475c97c44a506a4c";
+		expected = "36a96d39dab8e137aebd72fed5f71ff3ddfc1cc5";
 		actual = ObjectChecksumExtensions.getChecksum(person, HashAlgorithm.SHA_1);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 40;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "efa02f0177036cede43c99c23ae21d33c57ec4ad44b507043c92a8a0880b3c93";
+		expected = "1c8b7990650072c991ceaed72639e4c7416356af225d52d796c5d1aeb14818b1";
 		actual = ObjectChecksumExtensions.getChecksum(person, HashAlgorithm.SHA_256);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 64;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "2bc7c41ba22830c8b70db5108a0157440ca87d192cccb08ed5032bf3ebd418641576c695184bf4bb621d0e859feae4a5";
+		expected = "72d25f5e70e0a5423d2d1629fe67950d00cec139b43f7714a74aea27f6eaab29162f65ed6776bcc360f97310498fed15";
 		actual = ObjectChecksumExtensions.getChecksum(person, HashAlgorithm.SHA_384);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 96;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "c9b862690efde81937185c4193964a68f29eca3ebc7b0625baa8639a2307c7d31c2b1ede24e93d131ff7ea3bfa630498dab6c4250df0d746e48d46b00eda269b";
+		expected = "e586ea0a18c6b6cb500700d589fa382d4d6cfd94b3a79ae8381115c4713528429bdcdcc0c57157fad133b3af2f98177783aee6a19582d8ceed6df9d3ad2f6299";
 		actual = ObjectChecksumExtensions.getChecksum(person, HashAlgorithm.SHA_512);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
@@ -152,42 +152,42 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		person = Person.builder().gender(Gender.FEMALE).name("Anna").married(false)
 			.about("I'm a beast and beautiful").nickname("beast").build();
 
-		expected = "acd62e32794c8606ed2185dd4a89ab7e";
+		expected = "b1def362c48394716231bb7e42c14b3c";
 		actual = ObjectChecksumExtensions.getChecksum(person, MdAlgorithm.MD2.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "fa87da71f43072e8fbb0b785b19b0987";
+		expected = "6b80d6c08539433402f8b11775854717";
 		actual = ObjectChecksumExtensions.getChecksum(person, MdAlgorithm.MD5.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "b320d869739da2bf7ab19c37475c97c44a506a4c";
+		expected = "36a96d39dab8e137aebd72fed5f71ff3ddfc1cc5";
 		actual = ObjectChecksumExtensions.getChecksum(person, HashAlgorithm.SHA_1.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 40;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "efa02f0177036cede43c99c23ae21d33c57ec4ad44b507043c92a8a0880b3c93";
+		expected = "1c8b7990650072c991ceaed72639e4c7416356af225d52d796c5d1aeb14818b1";
 		actual = ObjectChecksumExtensions.getChecksum(person, HashAlgorithm.SHA_256.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 64;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "2bc7c41ba22830c8b70db5108a0157440ca87d192cccb08ed5032bf3ebd418641576c695184bf4bb621d0e859feae4a5";
+		expected = "72d25f5e70e0a5423d2d1629fe67950d00cec139b43f7714a74aea27f6eaab29162f65ed6776bcc360f97310498fed15";
 		actual = ObjectChecksumExtensions.getChecksum(person, HashAlgorithm.SHA_384.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 96;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "c9b862690efde81937185c4193964a68f29eca3ebc7b0625baa8639a2307c7d31c2b1ede24e93d131ff7ea3bfa630498dab6c4250df0d746e48d46b00eda269b";
+		expected = "e586ea0a18c6b6cb500700d589fa382d4d6cfd94b3a79ae8381115c4713528429bdcdcc0c57157fad133b3af2f98177783aee6a19582d8ceed6df9d3ad2f6299";
 		actual = ObjectChecksumExtensions.getChecksum(person, HashAlgorithm.SHA_512.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
