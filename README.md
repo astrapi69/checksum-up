@@ -17,6 +17,57 @@ objects
 
 If you like this project put a ⭐ and donate
 
+## Maven dependency
+
+Maven dependency is now on sonatype. Check
+out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~checksum-up~~~)
+for latest snapshots and releases.
+
+Add the following maven dependency to your project `pom.xml` if you want to import the core
+functionality of checksum-up:
+
+Than you can add the dependency to your dependencies:
+
+    <properties>
+            ...
+        <!-- CHECKSUM-UP VERSION -->
+        <checksum-up.version>1.2</checksum-up.version>
+            ...
+    </properties>
+            ...
+        <dependencies>
+            ...
+            <!-- CHECKSUM-UP DEPENDENCY -->
+            <dependency>
+                <groupId>io.github.astrapi69</groupId>
+                <artifactId>checksum-up</artifactId>
+                <version>${checksum-up.version}</version>
+            </dependency>
+            ...
+        </dependencies>
+
+## gradle dependency
+
+You can first define the version in the ext section and add than the following gradle dependency to
+your project `build.gradle` if you want to import the core functionality of checksum-up:
+
+define version in file gradle.properties
+```
+checksumUpVersion=1.2
+```
+
+or in build.gradle ext area
+
+```
+    checksumUpVersion = '1.2'
+```
+
+and than add the dependency to the dependencies area
+
+```
+implementation("io.github.astrapi69:checksum-up:$checksumUpVersion")
+```
+
 # Donations
 
 This project is kept as an open source product and relies on contributions to remain being
@@ -88,67 +139,6 @@ No animals were harmed in the making of this library.
 ## License
 
 The source code comes under the liberal MIT License, making checksum-up great for all types of applications.
-
-## Maven dependency
-
-Maven dependency is now on sonatype. Check
-out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~checksum-up~~~)
-for latest snapshots and releases.
-
-Add the following maven dependency to your project `pom.xml` if you want to import the core
-functionality of checksum-up:
-
-Than you can add the dependency to your dependencies:
-
-	<properties>
-			...
-		<!-- CHECKSUM-UP VERSION -->
-		<checksum-up.version>1.2</checksum-up.version>
-			...
-	</properties>
-			...
-		<dependencies>
-			...
-			<!-- CHECKSUM-UP DEPENDENCY -->
-			<dependency>
-				<groupId>io.github.astrapi69</groupId>
-				<artifactId>checksum-up</artifactId>
-				<version>${checksum-up.version}</version>
-			</dependency>
-			...
-		</dependencies>
-
-## gradle dependency
-
-You can first define the version in the ext section and add than the following gradle dependency to
-your project `build.gradle` if you want to import the core functionality of checksum-up:
-
-```
-define version in file gradle.properties
-
-checksumUpVersion=1.2
-```
-
-or in build.gradle ext area
-
-```
-ext {
-			...
-    checksumUpVersion = '1.2'
-			...
-}
-```
-
-and than add the dependency to the dependencies area
-
-```
-dependencies {
-			...
-implementation("io.github.astrapi69:checksum-up:$checksumUpVersion")
-			...
-}
-	
-```
 
 ## Semantic Versioning
 

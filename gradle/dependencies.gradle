@@ -1,0 +1,7 @@
+
+dependencies {
+    implementation("io.github.astrapi69:crypt-api:$cryptApiVersion")
+    testImplementation("io.github.astrapi69:test-objects:$testObjectsVersion")
+    testImplementation("org.meanbean:meanbean:$meanbeanVersion")
+    testImplementation("org.testng:testng:$testngVersion")
+}

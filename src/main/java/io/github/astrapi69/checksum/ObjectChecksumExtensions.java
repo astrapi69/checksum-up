@@ -20,8 +20,6 @@
  */
 package io.github.astrapi69.checksum;
 
-import io.github.astrapi69.crypto.algorithm.Algorithm;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -29,6 +27,8 @@ import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
+
+import io.github.astrapi69.crypto.algorithm.Algorithm;
 
 /**
  * The class {@link ObjectChecksumExtensions} is a utility class for computing checksum from objects
@@ -74,9 +74,9 @@ public final class ObjectChecksumExtensions
 	 */
 	public static long getChecksum(final String text, final boolean crc)
 	{
-		return crc ?
-			ByteArrayChecksumExtensions.getCheckSumCRC32(text.getBytes()) :
-			ByteArrayChecksumExtensions.getCheckSumAdler32(text.getBytes());
+		return crc
+			? ByteArrayChecksumExtensions.getCheckSumCRC32(text.getBytes())
+			: ByteArrayChecksumExtensions.getCheckSumAdler32(text.getBytes());
 	}
 
 	/**
@@ -140,9 +140,9 @@ public final class ObjectChecksumExtensions
 	public static <T extends Serializable> long getChecksum(final T serializableObject,
 		final boolean crc) throws IOException
 	{
-		return crc ?
-			ByteArrayChecksumExtensions.getCheckSumCRC32(toByteArray(serializableObject)) :
-			ByteArrayChecksumExtensions.getCheckSumAdler32(toByteArray(serializableObject));
+		return crc
+			? ByteArrayChecksumExtensions.getCheckSumCRC32(toByteArray(serializableObject))
+			: ByteArrayChecksumExtensions.getCheckSumAdler32(toByteArray(serializableObject));
 	}
 
 	/**

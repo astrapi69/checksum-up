@@ -20,18 +20,19 @@
  */
 package io.github.astrapi69.checksum;
 
+import static org.testng.AssertJUnit.assertEquals;
+
+import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
+
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
+
 import io.github.astrapi69.AbstractTestCase;
 import io.github.astrapi69.checksum.api.ChecksumAlgorithm;
 import io.github.astrapi69.crypto.algorithm.Algorithm;
 import io.github.astrapi69.crypto.algorithm.HashAlgorithm;
 import io.github.astrapi69.crypto.algorithm.MdAlgorithm;
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
-
-import java.nio.charset.StandardCharsets;
-import java.security.NoSuchAlgorithmException;
-
-import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * The unit test class for the class {@link ByteArrayChecksumExtensions}
@@ -42,10 +43,12 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ByteArrayChecksumExtensions#getChecksum(byte[], Algorithm)}.
 	 *
-	 * @throws NoSuchAlgorithmException Is thrown if the algorithm is not supported or does not exists.
-	 *                                  {@link java.security.MessageDigest} object.
+	 * @throws NoSuchAlgorithmException
+	 *             Is thrown if the algorithm is not supported or does not exists.
+	 *             {@link java.security.MessageDigest} object.
 	 */
-	@Test public void testGetChecksumByteArrayAlgorithm() throws NoSuchAlgorithmException
+	@Test
+	public void testGetChecksumByteArrayAlgorithm() throws NoSuchAlgorithmException
 	{
 		String expected;
 		String actual;
@@ -125,7 +128,8 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ChecksumExtensions#matchesMD5(String)}.
 	 */
-	@Test public void testMatchesMD5()
+	@Test
+	public void testMatchesMD5()
 	{
 		boolean expected;
 		boolean actual;
@@ -141,7 +145,8 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ChecksumExtensions#matchesSHA1(String)}.
 	 */
-	@Test public void testMatchesSHA1()
+	@Test
+	public void testMatchesSHA1()
 	{
 		boolean expected;
 		boolean actual;
@@ -157,7 +162,8 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ChecksumExtensions#matchesSHA512(String)}.
 	 */
-	@Test public void testMatchesSHA512()
+	@Test
+	public void testMatchesSHA512()
 	{
 		boolean expected;
 		boolean actual;
@@ -174,7 +180,8 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ChecksumExtensions}
 	 */
-	@Test public void testWithBeanTester()
+	@Test
+	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(ChecksumExtensions.class);

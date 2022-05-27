@@ -20,8 +20,6 @@
  */
 package io.github.astrapi69.checksum;
 
-import io.github.astrapi69.crypto.algorithm.Algorithm;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -31,6 +29,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.zip.Adler32;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedInputStream;
+
+import io.github.astrapi69.crypto.algorithm.Algorithm;
 
 /**
  * The class {@link FileChecksumExtensions} is a utility class for computing checksum from files and
@@ -88,9 +88,9 @@ public final class FileChecksumExtensions
 	public static long getChecksum(final File file, final boolean crc)
 		throws FileNotFoundException, IOException
 	{
-		try (CheckedInputStream cis = crc ?
-			new CheckedInputStream(new FileInputStream(file), new CRC32()) :
-			new CheckedInputStream(new FileInputStream(file), new Adler32()))
+		try (CheckedInputStream cis = crc
+			? new CheckedInputStream(new FileInputStream(file), new CRC32())
+			: new CheckedInputStream(new FileInputStream(file), new Adler32()))
 		{
 			final int length = (int)file.length();
 			final byte[] buffer = new byte[length];
@@ -122,8 +122,8 @@ public final class FileChecksumExtensions
 	public static String getChecksum(final File file, final String algorithm)
 		throws NoSuchAlgorithmException, IOException
 	{
-		return ByteArrayChecksumExtensions
-			.getChecksum(Files.readAllBytes(file.toPath()), algorithm);
+		return ByteArrayChecksumExtensions.getChecksum(Files.readAllBytes(file.toPath()),
+			algorithm);
 	}
 
 	/**

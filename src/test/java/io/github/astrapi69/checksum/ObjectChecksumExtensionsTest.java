@@ -20,20 +20,21 @@
  */
 package io.github.astrapi69.checksum;
 
+import static org.testng.AssertJUnit.assertEquals;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
+
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
+
 import io.github.astrapi69.AbstractTestCase;
 import io.github.astrapi69.crypto.algorithm.Algorithm;
 import io.github.astrapi69.crypto.algorithm.HashAlgorithm;
 import io.github.astrapi69.crypto.algorithm.MdAlgorithm;
 import io.github.astrapi69.test.objects.Person;
 import io.github.astrapi69.test.objects.enums.Gender;
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
-
-import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * The unit test class for the class {@link ObjectChecksumExtensions}
@@ -44,9 +45,11 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ObjectChecksumExtensions#getChecksum(Serializable, boolean)}
 	 *
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	@Test public void testGetChecksumObjectBoolean() throws IOException
+	@Test
+	public void testGetChecksumObjectBoolean() throws IOException
 	{
 		long expected;
 		long actual;
@@ -67,11 +70,13 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ObjectChecksumExtensions#getChecksum(Serializable, Algorithm)}
 	 *
-	 * @throws NoSuchAlgorithmException is thrown if instantiation of the SecretKeyFactory object fails.
-	 * @throws IOException              Signals that an I/O exception has occurred.
+	 * @throws NoSuchAlgorithmException
+	 *             is thrown if instantiation of the SecretKeyFactory object fails.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	@Test public void testGetChecksumSerializableAlgorithm()
-		throws IOException, NoSuchAlgorithmException
+	@Test
+	public void testGetChecksumSerializableAlgorithm() throws IOException, NoSuchAlgorithmException
 	{
 		String expected;
 		String actual;
@@ -129,10 +134,13 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ObjectChecksumExtensions#getChecksum(Serializable, String)}
 	 *
-	 * @throws NoSuchAlgorithmException is thrown if instantiation of the SecretKeyFactory object fails.
-	 * @throws IOException              Signals that an I/O exception has occurred.
+	 * @throws NoSuchAlgorithmException
+	 *             is thrown if instantiation of the SecretKeyFactory object fails.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	@Test public void testGetChecksumSerializableAlgorithmAsString()
+	@Test
+	public void testGetChecksumSerializableAlgorithmAsString()
 		throws IOException, NoSuchAlgorithmException
 	{
 		String expected;
@@ -190,9 +198,11 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ObjectChecksumExtensions#getChecksum(String, Algorithm)}
 	 *
-	 * @throws NoSuchAlgorithmException is thrown if instantiation of the SecretKeyFactory object fails.
+	 * @throws NoSuchAlgorithmException
+	 *             is thrown if instantiation of the SecretKeyFactory object fails.
 	 */
-	@Test public void testGetChecksumStringAlgorithm() throws NoSuchAlgorithmException
+	@Test
+	public void testGetChecksumStringAlgorithm() throws NoSuchAlgorithmException
 	{
 		String expected;
 		String actual;
@@ -293,9 +303,11 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ObjectChecksumExtensions#getChecksum(String, String)}
 	 *
-	 * @throws NoSuchAlgorithmException is thrown if instantiation of the SecretKeyFactory object fails.
+	 * @throws NoSuchAlgorithmException
+	 *             is thrown if instantiation of the SecretKeyFactory object fails.
 	 */
-	@Test public void testGetChecksumStringAlgorithmAsString() throws NoSuchAlgorithmException
+	@Test
+	public void testGetChecksumStringAlgorithmAsString() throws NoSuchAlgorithmException
 	{
 		String expected;
 		String actual;
@@ -396,7 +408,8 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ObjectChecksumExtensions#getChecksum(String, boolean)}
 	 */
-	@Test public void testGetChecksumStringBoolean()
+	@Test
+	public void testGetChecksumStringBoolean()
 	{
 		long expected;
 		long actual;
@@ -416,7 +429,8 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	/**
 	 * Test method for {@link ObjectChecksumExtensions}
 	 */
-	@Test public void testWithBeanTester()
+	@Test
+	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(ObjectChecksumExtensions.class);
