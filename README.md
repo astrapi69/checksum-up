@@ -1,21 +1,79 @@
 # Overview
 
-<div align="center">
+<div style="text-align: center">
 
-[![Build Status](https://api.travis-ci.com/astrapi69/checksum-up.svg?branch=develop)](https://travis-ci.com/github/astrapi69/checksum-up)
+[![Java CI with Gradle](https://github.com/astrapi69/checksum-up/actions/workflows/gradle.yml/badge.svg)](https://github.com/astrapi69/checksum-up/actions/workflows/gradle.yml)
 [![Coverage Status](https://codecov.io/gh/astrapi69/checksum-up/branch/develop/graph/badge.svg)](https://codecov.io/gh/astrapi69/checksum-up)
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/checksum-up.svg?style=flat)](https://github.com/astrapi69/checksum-up/issues)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/checksum-up/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/checksum-up)
 [![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/checksum-up.svg)](http://www.javadoc.io/doc/io.github.astrapi69/checksum-up)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
+[![Hits Of Code](https://hitsofcode.com/github/astrapi69/checksum-up?branch=develop)](https://hitsofcode.com/github/astrapi69/checksum-up/view?branch=develop)
+[![Lines Of Code](https://tokei.rs/b1/github/astrapi69/checksum-up)](https://github.com/astrapi69/checksum-up)
 
 </div>
 
 Utility library that provides utility classes for calculate checksums for files, byte arrays and
 objects
 
-If you like this project put a ⭐ and donate
+> Please support this project by simply putting a Github <!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/astrapi69/checksum-up" data-icon="octicon-star" aria-label="Star astrapi69/checksum-up on GitHub">Star ⭐</a>
+>
+> Share this library with friends on Twitter and everywhere else you can
+>
+> If you love this project [![donation](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
+
+## gradle dependency
+
+You can first define the version in the ext section and add than the following gradle dependency to
+your project `build.gradle` if you want to import the core functionality of checksum-up:
+
+define version in file gradle.properties
+```
+checksumUpVersion=1.3
+```
+
+or in build.gradle ext area
+
+```
+    checksumUpVersion = '1.3'
+```
+
+and than add the dependency to the dependencies area
+
+```
+implementation("io.github.astrapi69:checksum-up:$checksumUpVersion")
+```
+
+## Maven dependency
+
+Maven dependency is now on sonatype. Check
+out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~checksum-up~~~)
+for latest snapshots and releases.
+
+Add the following maven dependency to your project `pom.xml` if you want to import the core
+functionality of checksum-up:
+
+Than you can add the dependency to your dependencies:
+
+    <properties>
+            ...
+        <!-- CHECKSUM-UP VERSION -->
+        <checksum-up.version>1.3~~~~</checksum-up.version>
+            ...
+    </properties>
+            ...
+        <dependencies>
+            ...
+            <!-- CHECKSUM-UP DEPENDENCY -->
+            <dependency>
+                <groupId>io.github.astrapi69</groupId>
+                <artifactId>checksum-up</artifactId>
+                <version>${checksum-up.version}</version>
+            </dependency>
+            ...
+        </dependencies>
 
 # Donations
 
@@ -78,7 +136,7 @@ alt="Donation Monero Wallet" width="250"/>
 or over flattr:
 
 <a href="http://flattr.com/thing/4067696/astrapi69checksum-up-on-GitHub" target="_blank">
-<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" />
+<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" style="border: none"  />
 </a>
 
 ## Note
@@ -88,67 +146,6 @@ No animals were harmed in the making of this library.
 ## License
 
 The source code comes under the liberal MIT License, making checksum-up great for all types of applications.
-
-## Maven dependency
-
-Maven dependency is now on sonatype. Check
-out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~checksum-up~~~)
-for latest snapshots and releases.
-
-Add the following maven dependency to your project `pom.xml` if you want to import the core
-functionality of checksum-up:
-
-Than you can add the dependency to your dependencies:
-
-	<properties>
-			...
-		<!-- CHECKSUM-UP VERSION -->
-		<checksum-up.version>1.2</checksum-up.version>
-			...
-	</properties>
-			...
-		<dependencies>
-			...
-			<!-- CHECKSUM-UP DEPENDENCY -->
-			<dependency>
-				<groupId>io.github.astrapi69</groupId>
-				<artifactId>checksum-up</artifactId>
-				<version>${checksum-up.version}</version>
-			</dependency>
-			...
-		</dependencies>
-
-## gradle dependency
-
-You can first define the version in the ext section and add than the following gradle dependency to
-your project `build.gradle` if you want to import the core functionality of checksum-up:
-
-```
-define version in file gradle.properties
-
-checksumUpVersion=1.2
-```
-
-or in build.gradle ext area
-
-```
-ext {
-			...
-    checksumUpVersion = '1.2'
-			...
-}
-```
-
-and than add the dependency to the dependencies area
-
-```
-dependencies {
-			...
-implementation("io.github.astrapi69:checksum-up:$checksumUpVersion")
-			...
-}
-	
-```
 
 ## Semantic Versioning
 
@@ -176,12 +173,6 @@ Do not hesitate to contact the checksum-up developers with your questions, conce
 - Feature requests, questions and bug reports can be reported at the [issues page](https://github.com/astrapi69/checksum-up/issues).
 
 ## Credits
-
-|**Travis CI**|
-|     :---:      |
-|[![Travis CI](https://travis-ci.com/images/logos/TravisCI-Full-Color.png)](https://travis-ci.com/github/astrapi69/checksum-up)|
-|Special thanks to [Travis CI](https://travis-ci.org) for providing a free continuous integration service for open source projects|
-|     <img width=1000/>     |
 
 |**Nexus Sonatype repositories**|
 |     :---:      |
