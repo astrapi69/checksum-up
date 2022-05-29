@@ -185,6 +185,7 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 
 	/**
 	 * Test method for {@link FileChecksumExtensions#getChecksum(File, boolean)}
+	 * 
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
