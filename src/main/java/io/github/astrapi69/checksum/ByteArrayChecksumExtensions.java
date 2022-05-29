@@ -205,7 +205,7 @@ public final class ByteArrayChecksumExtensions
 	 */
 	public static String getCheckSumCRC32HexString(final byte[] bytes)
 	{
-		return normalizeLength(Long.toHexString(getCheckSumCRC32(bytes)));
+		return normalizeCheckSumCRC32HexStringLength(Long.toHexString(getCheckSumCRC32(bytes)));
 	}
 
 	private static byte[] toByteArray(Byte[] bytes)
@@ -218,7 +218,7 @@ public final class ByteArrayChecksumExtensions
 		return byteArray;
 	}
 
-	private static String normalizeLength(String hexString)
+	private static String normalizeCheckSumCRC32HexStringLength(String hexString)
 	{
 		StringBuilder hexStringBuilder = new StringBuilder(hexString);
 		while (hexStringBuilder.length() != 8)
