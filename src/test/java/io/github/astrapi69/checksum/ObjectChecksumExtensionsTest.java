@@ -43,6 +43,31 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 {
 
 	/**
+	 * Test method for {@link ObjectChecksumExtensions#getChecksumHexString(Serializable, boolean)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testGetChecksumObjectBooleanHexString() throws IOException
+	{
+		String expected;
+		String actual;
+		Person person;
+
+		person = Person.builder().gender(Gender.FEMALE).name("Anna").married(false)
+			.about("I'm a beast and beautiful").nickname("beast").build();
+
+		expected = "ee3d9073";
+		actual = ObjectChecksumExtensions.getChecksumHexString(person, true);
+		assertEquals(expected, actual);
+
+		expected = "cb8f7d70";
+		actual = ObjectChecksumExtensions.getChecksumHexString(person, false);
+		assertEquals(expected, actual);
+	}
+
+	/**
 	 * Test method for {@link ObjectChecksumExtensions#getChecksum(Serializable, boolean)}
 	 *
 	 * @throws IOException
@@ -59,10 +84,12 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 			.about("I'm a beast and beautiful").nickname("beast").build();
 
 		expected = 3997012083L;
+		System.err.println(Long.toHexString(expected));
 		actual = ObjectChecksumExtensions.getChecksum(person, true);
 		assertEquals(expected, actual);
 
 		expected = 3415178608L;
+		System.err.println(Long.toHexString(expected));
 		actual = ObjectChecksumExtensions.getChecksum(person, false);
 		assertEquals(expected, actual);
 	}
@@ -98,7 +125,6 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		actual = ObjectChecksumExtensions.getChecksum(person, MdAlgorithm.MD5);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "36a96d39dab8e137aebd72fed5f71ff3ddfc1cc5";
@@ -163,7 +189,6 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		actual = ObjectChecksumExtensions.getChecksum(person, MdAlgorithm.MD5.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "36a96d39dab8e137aebd72fed5f71ff3ddfc1cc5";
@@ -223,7 +248,6 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		actual = ObjectChecksumExtensions.getChecksum(text, MdAlgorithm.MD5);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "e41a81525dbfb95f254e0558c8d15969b661ccc0";
@@ -267,7 +291,6 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		actual = ObjectChecksumExtensions.getChecksum(text, MdAlgorithm.MD5);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "874026e54b67d4f9aaf87cb14a683fb51de6f9cb";
@@ -328,7 +351,6 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		actual = ObjectChecksumExtensions.getChecksum(text, MdAlgorithm.MD5.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "e41a81525dbfb95f254e0558c8d15969b661ccc0";
@@ -372,7 +394,6 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		actual = ObjectChecksumExtensions.getChecksum(text, MdAlgorithm.MD5.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "874026e54b67d4f9aaf87cb14a683fb51de6f9cb";

@@ -146,6 +146,30 @@ public final class ObjectChecksumExtensions
 	}
 
 	/**
+	 * Gets the checksum as hexadecimal string from the given serializable object. If the flag crc
+	 * is true then the checksum is constructed with an instance of <code>java.util.zip.CRC32</code>
+	 * otherwise with an instance of <code>java.util.zip.Adler32</code>.
+	 *
+	 * @param <T>
+	 *            the generic type of the serializable object
+	 * @param serializableObject
+	 *            the serializable object from what to get the checksum
+	 * @param crc
+	 *            the crc flag
+	 * @return The checksum from the given serializable object as long
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static <T extends Serializable> String getChecksumHexString(final T serializableObject,
+		final boolean crc) throws IOException
+	{
+		return crc
+			? ByteArrayChecksumExtensions.getCheckSumCRC32HexString(toByteArray(serializableObject))
+			: ByteArrayChecksumExtensions
+				.getCheckSumAdler32HexString(toByteArray(serializableObject));
+	}
+
+	/**
 	 * Gets the checksum from the given file with an instance of the given algorithm
 	 *
 	 * @param <T>

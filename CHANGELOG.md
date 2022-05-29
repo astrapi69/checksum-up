@@ -4,7 +4,15 @@
 Version 1.4-SNAPSHOT
 -------------
 
+ADDED:
 
+- new method in ByteArrayChecksumExtensions that resolves the hexadecimal string from CRC32 checksum
+- new method in ByteArrayChecksumExtensions that resolves the hexadecimal string from ADLER32 checksum
+- new method in FileChecksumExtensions that resolves the hexadecimal string from CRC32 checksum
+- new method in FileChecksumExtensions that resolves the hexadecimal string from ADLER32 checksum
+- new method in ObjectChecksumExtensions that resolves the hexadecimal string from CRC32 checksum
+- new method in ObjectChecksumExtensions that resolves the hexadecimal string from ADLER32 checksum
+- new test dependency file-worker in minor version 8.2
 
 Version 1.3
 -------------
@@ -29,8 +37,8 @@ Version 1.1
 
 ADDED:
 
-- created new ChecksumExtensions class for resolve the checksum algorithm
-- created new project properties
+- new ChecksumExtensions class for resolve the checksum algorithm
+- new project properties
 
 CHANGED:
 
