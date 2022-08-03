@@ -65,6 +65,21 @@ public class ByteArrayChecksumExtensionsTest extends AbstractTestCase<Long, Long
 	}
 
 	/**
+	 * Test method for {@link ByteArrayChecksumExtensions#getCheckSumAdler32HexString(byte[])}
+	 */
+	@Test
+	public void testGetCheckSumAdler32HexString()
+	{
+		String expected;
+		String actual;
+		final String secretMessage = "secret Message";
+		final byte[] secretMessageBytes = secretMessage.getBytes(StandardCharsets.UTF_8);
+		actual = ByteArrayChecksumExtensions.getCheckSumAdler32HexString(secretMessageBytes);
+		expected = "28e3056c";
+		assertEquals(expected, actual);
+	}
+
+	/**
 	 * Test method for {@link ByteArrayChecksumExtensions#getChecksum(Algorithm, byte[]...)}
 	 *
 	 * @throws NoSuchAlgorithmException
@@ -95,7 +110,6 @@ public class ByteArrayChecksumExtensionsTest extends AbstractTestCase<Long, Long
 			secondMessageBytes);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 64;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "874026e54b67d4f9aaf87cb14a683fb51de6f9cb0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33";
@@ -158,7 +172,6 @@ public class ByteArrayChecksumExtensionsTest extends AbstractTestCase<Long, Long
 		actual = ByteArrayChecksumExtensions.getChecksum(secretMessageBytes, MdAlgorithm.MD5);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "874026e54b67d4f9aaf87cb14a683fb51de6f9cb";
@@ -219,7 +232,6 @@ public class ByteArrayChecksumExtensionsTest extends AbstractTestCase<Long, Long
 			MdAlgorithm.MD5.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "874026e54b67d4f9aaf87cb14a683fb51de6f9cb";
@@ -283,7 +295,6 @@ public class ByteArrayChecksumExtensionsTest extends AbstractTestCase<Long, Long
 		actual = ByteArrayChecksumExtensions.getChecksum(secretMessageBytes, MdAlgorithm.MD5);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "874026e54b67d4f9aaf87cb14a683fb51de6f9cb";
@@ -351,7 +362,6 @@ public class ByteArrayChecksumExtensionsTest extends AbstractTestCase<Long, Long
 			MdAlgorithm.MD5.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "874026e54b67d4f9aaf87cb14a683fb51de6f9cb";
@@ -399,6 +409,21 @@ public class ByteArrayChecksumExtensionsTest extends AbstractTestCase<Long, Long
 		final byte[] secretMessageBytes = secretMessage.getBytes(StandardCharsets.UTF_8);
 		actual = ByteArrayChecksumExtensions.getCheckSumCRC32(secretMessageBytes);
 		expected = 711998200L;
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link ByteArrayChecksumExtensions#getCheckSumCRC32HexString(byte[])}
+	 */
+	@Test
+	public void testGetCheckSumCRC32HexString()
+	{
+		String expected;
+		String actual;
+		final String secretMessage = "secret Message";
+		final byte[] secretMessageBytes = secretMessage.getBytes(StandardCharsets.UTF_8);
+		actual = ByteArrayChecksumExtensions.getCheckSumCRC32HexString(secretMessageBytes);
+		expected = "2a703af8";
 		assertEquals(expected, actual);
 	}
 

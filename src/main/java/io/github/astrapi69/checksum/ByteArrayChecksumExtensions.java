@@ -157,11 +157,11 @@ public final class ByteArrayChecksumExtensions
 	}
 
 	/**
-	 * Gets the checksum from the given byte array with an instance of.
+	 * Gets the checksum from the given byte array with an instance of {@link Adler32} object
 	 *
 	 * @param bytes
 	 *            The byte array.
-	 * @return The checksum from the byte array as long. {@link Adler32} object.
+	 * @return The checksum from the byte array as long.
 	 */
 	public static long getCheckSumAdler32(final byte[] bytes)
 	{
@@ -171,17 +171,41 @@ public final class ByteArrayChecksumExtensions
 	}
 
 	/**
-	 * Gets the checksum from the given byte array with an instance of.
+	 * Gets the checksum as hexadecimal string from the given byte array
 	 *
 	 * @param bytes
 	 *            The byte array.
-	 * @return The checksum from the byte array as long. {@link CRC32} object.
+	 * @return The checksum from the byte array as long.
+	 */
+	public static String getCheckSumAdler32HexString(final byte[] bytes)
+	{
+		return Long.toHexString(getCheckSumAdler32(bytes));
+	}
+
+	/**
+	 * Gets the checksum from the given byte array with an instance of {@link CRC32} object
+	 *
+	 * @param bytes
+	 *            The byte array.
+	 * @return The checksum from the byte array as long
 	 */
 	public static long getCheckSumCRC32(final byte[] bytes)
 	{
 		final Checksum checksum = new CRC32();
 		checksum.update(bytes, 0, bytes.length);
 		return checksum.getValue();
+	}
+
+	/**
+	 * Gets the checksum from the given byte array with an instance of {@link CRC32} object
+	 *
+	 * @param bytes
+	 *            The byte array.
+	 * @return The checksum from the byte array as long
+	 */
+	public static String getCheckSumCRC32HexString(final byte[] bytes)
+	{
+		return normalizeCheckSumCRC32HexStringLength(Long.toHexString(getCheckSumCRC32(bytes)));
 	}
 
 	private static byte[] toByteArray(Byte[] bytes)
@@ -192,6 +216,17 @@ public final class ByteArrayChecksumExtensions
 			byteArray[i] = bytes[i];
 		}
 		return byteArray;
+	}
+
+	private static String normalizeCheckSumCRC32HexStringLength(String hexString)
+	{
+		StringBuilder hexStringBuilder = new StringBuilder(hexString);
+		while (hexStringBuilder.length() != 8)
+		{
+			hexStringBuilder.insert(0, "0");
+		}
+		hexString = hexStringBuilder.toString();
+		return hexString;
 	}
 
 }

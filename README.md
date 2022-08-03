@@ -31,13 +31,13 @@ your project `build.gradle` if you want to import the core functionality of chec
 
 define version in file gradle.properties
 ```
-checksumUpVersion=1.3
+checksumUpVersion=2
 ```
 
 or in build.gradle ext area
 
 ```
-    checksumUpVersion = '1.3'
+    checksumUpVersion = '2'
 ```
 
 and than add the dependency to the dependencies area
@@ -60,7 +60,7 @@ Than you can add the dependency to your dependencies:
     <properties>
             ...
         <!-- CHECKSUM-UP VERSION -->
-        <checksum-up.version>1.3~~~~</checksum-up.version>
+        <checksum-up.version>2</checksum-up.version>
             ...
     </properties>
             ...

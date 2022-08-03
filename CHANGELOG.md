@@ -1,6 +1,29 @@
 ## Change log
 ----------------------
 
+Version 2
+-------------
+
+ADDED:
+
+- new method in ByteArrayChecksumExtensions that resolves the hexadecimal string from CRC32 checksum
+- new method in ByteArrayChecksumExtensions that resolves the hexadecimal string from ADLER32 checksum
+- new method in FileChecksumExtensions that resolves the hexadecimal string from CRC32 checksum
+- new method in FileChecksumExtensions that resolves the hexadecimal string from ADLER32 checksum
+- new method in ObjectChecksumExtensions that resolves the hexadecimal string from CRC32 checksum
+- new method in ObjectChecksumExtensions that resolves the hexadecimal string from ADLER32 checksum
+- new test dependency file-worker in minor version 8.2
+
+CHANGED:
+
+- update to jdk version 11
+- update gradle to new version 7.5
+- update of gradle-plugin dependency 'com.diffplug.spotless:spotless-plugin-gradle' to new minor version 6.9.0
+- update of gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle' to new minor version 5.0.0
+- update of dependency crypt-api to new version to 8.1
+- update of test dependency test-objects to new minor version 6.1
+- update of test dependency testng to new patch version 7.6.1
+
 Version 1.3
 -------------
 
@@ -24,8 +47,8 @@ Version 1.1
 
 ADDED:
 
-- created new ChecksumExtensions class for resolve the checksum algorithm
-- created new project properties
+- new ChecksumExtensions class for resolve the checksum algorithm
+- new project properties
 
 CHANGED:
 

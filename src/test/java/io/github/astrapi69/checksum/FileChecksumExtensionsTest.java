@@ -23,7 +23,6 @@ package io.github.astrapi69.checksum;
 import static org.testng.AssertJUnit.assertEquals;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
@@ -35,6 +34,7 @@ import io.github.astrapi69.AbstractTestCase;
 import io.github.astrapi69.crypto.algorithm.Algorithm;
 import io.github.astrapi69.crypto.algorithm.HashAlgorithm;
 import io.github.astrapi69.crypto.algorithm.MdAlgorithm;
+import io.github.astrapi69.file.search.PathFinder;
 
 /**
  * The unit test class for the class {@link FileChecksumExtensions}
@@ -47,48 +47,6 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	File testFileExtern;
 
 	/**
-	 * Gets the absolute path.
-	 *
-	 * @param file
-	 *            the file
-	 * @param removeLastChar
-	 *            the remove last char
-	 * @return the absolute path
-	 */
-	private static String getAbsolutePath(final File file, final boolean removeLastChar)
-	{
-		String absolutePath = file.getAbsolutePath();
-		if (removeLastChar)
-		{
-			absolutePath = absolutePath.substring(0, absolutePath.length() - 1);
-		}
-		return absolutePath;
-	}
-
-	/**
-	 * Gets the project directory.
-	 *
-	 * @return the project directory
-	 */
-	private static File getProjectDirectory()
-	{
-		return getProjectDirectory(new File("."));
-	}
-
-	/**
-	 * Gets the project directory.
-	 *
-	 * @param currentDir
-	 *            the current dir
-	 * @return the project directory
-	 */
-	private static File getProjectDirectory(final File currentDir)
-	{
-		final String projectPath = getAbsolutePath(currentDir, true);
-		return new File(projectPath);
-	}
-
-	/**
 	 * Sets up method will be invoked before every unit test method in this class
 	 */
 	@Override
@@ -96,12 +54,11 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	protected void setUp()
 	{
 		String checksumDirExternName = System.getProperty("user.home");
-		checksumDir = new File(getProjectDirectory(), "src/test/resources/checksum");
+		checksumDir = new File(PathFinder.getProjectDirectory(), "src/test/resources/checksum");
 		testFile = new File(checksumDir, "testReadFileInput.txt");
 		checksumDirExtern = new File(checksumDirExternName, "/apps/monero");
 		testFileExtern = new File(checksumDirExtern, "monero-linux-x64-v0.15.0.5.tar.bz2");
 	}
-
 
 	/**
 	 * Test method for {@link FileChecksumExtensions#getCheckSumAdler32(File)}
@@ -116,6 +73,38 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		long actual;
 		actual = FileChecksumExtensions.getCheckSumAdler32(testFile);
 		expected = 3296728756L;
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link FileChecksumExtensions#getCheckSumAdler32HexString(File)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testGetCheckSumAdler32HexStringFile() throws IOException
+	{
+		String expected;
+		String actual;
+		actual = FileChecksumExtensions.getCheckSumAdler32HexString(testFile);
+		expected = "c48016b4";
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link FileChecksumExtensions#getCheckSumCRC32HexString(File)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testGetCheckSumCRC32FileHexString() throws IOException
+	{
+		String expected;
+		String actual;
+		actual = FileChecksumExtensions.getCheckSumCRC32HexString(testFile);
+		expected = "0bbedb29";
 		assertEquals(expected, actual);
 	}
 
@@ -162,7 +151,6 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		actual = FileChecksumExtensions.getChecksum(testFile, MdAlgorithm.MD5);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "496dfa0ecf50cc6e3eda41fd3258272c2f2f0ff1";
@@ -197,14 +185,12 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 
 	/**
 	 * Test method for {@link FileChecksumExtensions#getChecksum(File, boolean)}
-	 *
-	 * @throws FileNotFoundException
-	 *             the file not found exception
+	 * 
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
-	public void testGetChecksumFileBoolean() throws FileNotFoundException, IOException
+	public void testGetChecksumFileBoolean() throws IOException
 	{
 		long expected;
 		long actual;
@@ -246,7 +232,6 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		actual = FileChecksumExtensions.getChecksum(testFile, MdAlgorithm.MD5.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "496dfa0ecf50cc6e3eda41fd3258272c2f2f0ff1";
