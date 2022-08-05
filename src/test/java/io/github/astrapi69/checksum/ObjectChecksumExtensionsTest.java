@@ -33,14 +33,70 @@ import io.github.astrapi69.AbstractTestCase;
 import io.github.astrapi69.crypto.algorithm.Algorithm;
 import io.github.astrapi69.crypto.algorithm.HashAlgorithm;
 import io.github.astrapi69.crypto.algorithm.MdAlgorithm;
+import io.github.astrapi69.test.object.Factory;
 import io.github.astrapi69.test.object.Person;
 import io.github.astrapi69.test.object.enumtype.Gender;
+import io.github.astrapi69.test.object.factory.TestObjectFactory;
 
 /**
  * The unit test class for the class {@link ObjectChecksumExtensions}
  */
 public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 {
+
+
+	/**
+	 * Test method for {@link ObjectChecksumExtensions#getChecksum(String, Serializable[])}
+	 *
+	 * @throws NoSuchAlgorithmException
+	 *             is thrown if instantiation of the SecretKeyFactory object fails.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testGetChecksumStringAlgorithmObjects() throws NoSuchAlgorithmException, IOException
+	{
+		String expected;
+		String actual;
+		Person person;
+		Person anotherPerson;
+
+		person = TestObjectFactory.newPerson();
+
+		anotherPerson = Person.builder().gender(Gender.FEMALE).name("Anton").married(false)
+			.about("I'm a dev guy").nickname("admin").build();
+		actual = ObjectChecksumExtensions.getChecksum(MdAlgorithm.MD2.getAlgorithm(), person,
+			anotherPerson);
+		expected = "8cb07185f0ca40fb0294514fe88ad3cd";
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for
+	 * {@link ObjectChecksumExtensions#getChecksum(Serializable, Serializable, String)}
+	 *
+	 * @throws NoSuchAlgorithmException
+	 *             is thrown if instantiation of the SecretKeyFactory object fails.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testGetChecksumObjectObjectAlgorithm() throws IOException, NoSuchAlgorithmException
+	{
+		String expected;
+		String actual;
+		Person person;
+		Factory factory;
+
+		person = TestObjectFactory.newPerson();
+
+		factory = TestObjectFactory.newFactory();
+
+		actual = ObjectChecksumExtensions.getChecksum(person, factory,
+			MdAlgorithm.MD2.getAlgorithm());
+		expected = "971350a9e6f797cc6d3f92af40697adf";
+		assertEquals(expected, actual);
+	}
 
 	/**
 	 * Test method for {@link ObjectChecksumExtensions#getChecksumHexString(Serializable, boolean)}
