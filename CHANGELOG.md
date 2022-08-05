@@ -4,7 +4,11 @@
 Version 2.1-SNAPSHOT
 -------------
 
+ADDED:
 
+- new method in ObjectChecksumExtensions that creates the checksum of two different serialized objects
+- new method in ObjectChecksumExtensions that creates the checksum of several serialized objects of the same type
+- new method in ObjectChecksumExtensions that creates a new byte array from several serialized objects of the same type
 
 Version 2
 -------------
