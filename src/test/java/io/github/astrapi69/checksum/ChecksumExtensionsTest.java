@@ -29,8 +29,8 @@ import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import io.github.astrapi69.AbstractTestCase;
-import io.github.astrapi69.checksum.api.ChecksumAlgorithm;
 import io.github.astrapi69.crypto.algorithm.Algorithm;
+import io.github.astrapi69.crypto.algorithm.ChecksumAlgorithm;
 import io.github.astrapi69.crypto.algorithm.HashAlgorithm;
 import io.github.astrapi69.crypto.algorithm.MdAlgorithm;
 
@@ -72,10 +72,8 @@ public class ChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		actual = ByteArrayChecksumExtensions.getChecksum(secretMessageBytes, MdAlgorithm.MD5);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 		actualAlgorithm = ChecksumExtensions.resolveChecksumAlgorithm(actual);
-		expectedAlgorithm = ChecksumAlgorithm.MD5;
 		assertEquals(expectedAlgorithm, actualAlgorithm);
 
 		expected = "874026e54b67d4f9aaf87cb14a683fb51de6f9cb";

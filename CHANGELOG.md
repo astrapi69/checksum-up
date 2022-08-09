@@ -10,6 +10,12 @@ ADDED:
 - new method in ObjectChecksumExtensions that creates the checksum of several serialized objects of the same type
 - new method in ObjectChecksumExtensions that creates a new byte array from several serialized objects of the same type
 
+CHANGED:
+
+- update gradle to new version 7.5.1
+- update of dependency crypt-api to new version to 8.2
+- removed interface ChecksumAlgorithm from this module that is now in the new version of the module crypt-api
+
 Version 2
 -------------
 
