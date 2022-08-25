@@ -29,10 +29,10 @@ import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import io.github.astrapi69.AbstractTestCase;
-import io.github.astrapi69.crypto.algorithm.Algorithm;
-import io.github.astrapi69.crypto.algorithm.ChecksumAlgorithm;
-import io.github.astrapi69.crypto.algorithm.HashAlgorithm;
-import io.github.astrapi69.crypto.algorithm.MdAlgorithm;
+import io.github.astrapi69.crypt.api.algorithm.Algorithm;
+import io.github.astrapi69.crypt.api.algorithm.ChecksumAlgorithm;
+import io.github.astrapi69.crypt.api.algorithm.HashAlgorithm;
+import io.github.astrapi69.crypt.api.algorithm.MdAlgorithm;
 
 /**
  * The unit test class for the class {@link ByteArrayChecksumExtensions}

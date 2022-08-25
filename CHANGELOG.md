@@ -13,7 +13,10 @@ ADDED:
 CHANGED:
 
 - update gradle to new version 7.5.1
-- update of dependency crypt-api to new version to 8.2
+- update of gradle-plugin dependency 'com.diffplug.spotless:spotless-plugin-gradle' to new minor version 6.10.0
+- update of dependency crypt-api to new version to 8.3
+- update of test dependency test-object to new minor version 7.1
+- update of test dependency file-worker to new minor version 11.1
 - removed interface ChecksumAlgorithm from this module that is now in the new version of the module crypt-api
 
 Version 2

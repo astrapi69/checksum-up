@@ -28,7 +28,7 @@ import java.util.zip.Adler32;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedInputStream;
 
-import io.github.astrapi69.crypto.algorithm.Algorithm;
+import io.github.astrapi69.crypt.api.algorithm.Algorithm;
 
 /**
  * The class {@link FileChecksumExtensions} is a utility class for computing checksum from files and

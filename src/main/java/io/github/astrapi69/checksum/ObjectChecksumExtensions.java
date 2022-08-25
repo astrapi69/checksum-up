@@ -28,7 +28,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
-import io.github.astrapi69.crypto.algorithm.Algorithm;
+import io.github.astrapi69.crypt.api.algorithm.Algorithm;
 
 /**
  * The class {@link ObjectChecksumExtensions} is a utility class for computing checksum from objects
