@@ -290,7 +290,7 @@ public final class ObjectChecksumExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T extends Serializable> String getChecksum(final String algorithm,
+	public static <T extends Serializable> String getChecksums(final String algorithm,
 		final T... serializableObjects) throws NoSuchAlgorithmException, IOException
 	{
 		return ByteArrayChecksumExtensions.getChecksum(toByteArray(serializableObjects), algorithm);

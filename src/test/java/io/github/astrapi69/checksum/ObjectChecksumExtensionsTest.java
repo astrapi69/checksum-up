@@ -46,7 +46,7 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 
 
 	/**
-	 * Test method for {@link ObjectChecksumExtensions#getChecksum(String, Serializable[])}
+	 * Test method for {@link ObjectChecksumExtensions#getChecksums(String, Serializable[])}
 	 *
 	 * @throws NoSuchAlgorithmException
 	 *             is thrown if instantiation of the SecretKeyFactory object fails.
@@ -54,7 +54,8 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
-	public void testGetChecksumStringAlgorithmObjects() throws NoSuchAlgorithmException, IOException
+	public void testGetChecksumsStringAlgorithmObjects()
+		throws NoSuchAlgorithmException, IOException
 	{
 		String expected;
 		String actual;
@@ -65,7 +66,7 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 
 		anotherPerson = Person.builder().gender(Gender.FEMALE).name("Anton").married(false)
 			.about("I'm a dev guy").nickname("admin").build();
-		actual = ObjectChecksumExtensions.getChecksum(MdAlgorithm.MD2.getAlgorithm(), person,
+		actual = ObjectChecksumExtensions.getChecksums(MdAlgorithm.MD2.getAlgorithm(), person,
 			anotherPerson);
 		expected = "8cb07185f0ca40fb0294514fe88ad3cd";
 		assertEquals(expected, actual);

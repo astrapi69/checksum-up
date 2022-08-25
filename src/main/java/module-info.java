@@ -20,4 +20,5 @@
  */
 module checksum.up {
 	requires crypt.api;
+	exports io.github.astrapi69.checksum;
 }

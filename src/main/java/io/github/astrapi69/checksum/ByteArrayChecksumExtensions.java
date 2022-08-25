@@ -55,7 +55,7 @@ public final class ByteArrayChecksumExtensions
 	 *             Is thrown if the algorithm is not supported or does not exists.
 	 *             {@link MessageDigest} object.
 	 */
-	public static String getChecksum(final Algorithm algorithm, final byte[]... byteArrays)
+	public static String getChecksums(final Algorithm algorithm, final byte[]... byteArrays)
 		throws NoSuchAlgorithmException
 	{
 		StringBuilder sb = new StringBuilder();
