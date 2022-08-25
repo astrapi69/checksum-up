@@ -94,7 +94,7 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 
 		actual = ObjectChecksumExtensions.getChecksum(person, factory,
 			MdAlgorithm.MD2.getAlgorithm());
-		expected = "971350a9e6f797cc6d3f92af40697adf";
+		expected = "0dc30316b12e8c7c359bf86d58aee2ef";
 		assertEquals(expected, actual);
 	}
 
