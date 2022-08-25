@@ -20,7 +20,7 @@
  */
 package io.github.astrapi69.checksum;
 
-import io.github.astrapi69.checksum.api.ChecksumAlgorithm;
+import io.github.astrapi69.crypt.api.algorithm.ChecksumAlgorithm;
 
 /**
  * The class {@link ChecksumExtensions} is a utility class for computing checksum from byte arrays

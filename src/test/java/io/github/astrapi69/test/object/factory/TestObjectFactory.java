@@ -18,61 +18,32 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.checksum.api;
+package io.github.astrapi69.test.object.factory;
 
-import io.github.astrapi69.crypto.algorithm.Algorithm;
+import io.github.astrapi69.test.object.Employee;
+import io.github.astrapi69.test.object.Factory;
+import io.github.astrapi69.test.object.Person;
+import io.github.astrapi69.test.object.enumtype.Gender;
 
-public enum ChecksumAlgorithm implements Algorithm
+public class TestObjectFactory
 {
 
-	/**
-	 * The enum constant for MD2 algorithm.
-	 */
-	MD2("MD2"),
-
-	/**
-	 * The enum constant for MD4 algorithm.
-	 */
-	MD4("MD4"),
-
-	/**
-	 * The enum constant for MD5 algorithm.
-	 */
-	MD5("MD5"),
-
-	/**
-	 * The enum constant for SHA-1 algorithm.
-	 */
-	SHA_1("SHA-1"),
-
-	/**
-	 * The enum constant for SHA-256 algorithm.
-	 */
-	SHA_256("SHA-256"),
-
-	/**
-	 * The enum constant for SHA-384 algorithm.
-	 */
-	SHA_384("SHA-384"),
-
-	/**
-	 * The enum constant for SHA-512 algorithm.
-	 */
-	SHA_512("SHA-512"),
-	/**
-	 * The enum constant for SHA-512 algorithm.
-	 */
-	UNDEFINED("UNDEFINED");
-
-	private final String algorithm;
-
-	ChecksumAlgorithm(String algorithm)
+	public static Person newPerson()
 	{
-		this.algorithm = algorithm;
+		return Person.builder().gender(Gender.FEMALE).name("Anna").married(false)
+			.about("I'm a beast and beautiful").nickname("beast").build();
 	}
 
-	public String getAlgorithm()
+	public static Factory newFactory()
 	{
-		return this.algorithm;
+		return Factory.builder()
+			.employee(Employee.builder().id("1")
+				.person(Person.builder().name("Lea").gender(Gender.FEMALE).married(Boolean.FALSE)
+					.build())
+				.build())
+			.employee(Employee.builder().id("2").person(
+				Person.builder().name("Luke").gender(Gender.MALE).married(Boolean.FALSE).build())
+				.build())
+			.name("StarPiece").location("Greece/Katerini").build();
 	}
 }
