@@ -227,6 +227,7 @@ public final class ObjectChecksumExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
+	@SafeVarargs
 	public static <T extends Serializable> byte[] toByteArray(final T... objects) throws IOException
 	{
 		Objects.requireNonNull(objects);
@@ -292,6 +293,7 @@ public final class ObjectChecksumExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
+	@SafeVarargs
 	public static <T extends Serializable> String getChecksums(final String algorithm,
 		final T... serializableObjects) throws NoSuchAlgorithmException, IOException
 	{
