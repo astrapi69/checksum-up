@@ -222,7 +222,8 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		int actualLength;
 
 		expected = "8350e5a3e24c153df2275c9f80692773";
-		actual = FileChecksumExtensions.getChecksum(PathFinder.getSrcTestResourcesDir(), MdAlgorithm.MD2.getAlgorithm());
+		actual = FileChecksumExtensions.getChecksum(PathFinder.getSrcTestResourcesDir(),
+			MdAlgorithm.MD2.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 32;
