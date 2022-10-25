@@ -97,51 +97,51 @@ public class ByteArrayChecksumExtensionsTest extends AbstractTestCase<Long, Long
 		String secondMessage = "foo";
 		final byte[] secretMessageBytes = secretMessage.getBytes(StandardCharsets.UTF_8);
 		final byte[] secondMessageBytes = secondMessage.getBytes(StandardCharsets.UTF_8);
-		expected = "5cc16e663491726545c13ec2012f4601d11f8ce29210b4b50c5e67533b699d02";
+		expected = "3a3a8fdbe1e34b21108e3bb9edf958a5";
 		actual = ByteArrayChecksumExtensions.getChecksums(MdAlgorithm.MD2, secretMessageBytes,
 			secondMessageBytes);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 64;
+		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "25659bd9db98ecc3c2077d44e69607b8acbd18db4cc2f85cedef654fccc4a4d8";
+		expected = "626ee46cd64f219ba303f3ff8746628e";
 		actual = ByteArrayChecksumExtensions.getChecksums(MdAlgorithm.MD5, secretMessageBytes,
 			secondMessageBytes);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		assertEquals(expectedLength, actualLength);
 
-		expected = "874026e54b67d4f9aaf87cb14a683fb51de6f9cb0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33";
+		expected = "fcd2f026f3455f42cc23eae194b7e6d31a8e816a";
 		actual = ByteArrayChecksumExtensions.getChecksums(HashAlgorithm.SHA_1, secretMessageBytes,
 			secondMessageBytes);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 80;
+		expectedLength = 40;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "8a3b3c92a8b0eb00da917c23201a9407ef7963373464076aec4c54c066e8b7aa2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae";
+		expected = "5524e04736a8198e7db6c0033f7f974f40c01bd654f78eb4f1bafb05badbf30c";
 		actual = ByteArrayChecksumExtensions.getChecksums(HashAlgorithm.SHA_256, secretMessageBytes,
 			secondMessageBytes);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 128;
+		expectedLength = 64;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "b58a362687ab42b9bf0d8af0b4860ed262d1fd128e16ab0082723e7785a862cd129b03577312452cc24aecdb36d5406d98c11ffdfdd540676b1a137cb1a22b2a70350c9a44171d6b1180c6be5cbb2ee3f79d532c8a1dd9ef2e8e08e752a3babb";
+		expected = "ac7886bf6c9cacfc97f524b165e7a7ff874b4d26cd54a09798afa6d0ec03d68830f6f4a6c290674fcbaabdbea00d2409";
 		actual = ByteArrayChecksumExtensions.getChecksums(HashAlgorithm.SHA_384, secretMessageBytes,
 			secondMessageBytes);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 192;
+		expectedLength = 96;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "ab29b34a26547ca4ce517d776885a5642929d9ed571a990fc764f7d0b854d6546276ca9aa45b3d88db3dc3dbf3c2f2152017d3e3e054ed6cd7a38a1f7925a746f7fbba6e0636f890e56fbbf3283e524c6fa3204ae298382d624741d0dc6638326e282c41be5e4254d8820772c5518a2c5a8c0c7f7eda19594a7eb539453e1ed7";
+		expected = "f4867591ef38f3dc54d9b4d2b8c91a8cb042c76d67ba9e8493dd57d675390c47fd33d5cbbdb2356a99607be39028acb8f704baa4dcbf55f9bcd8d44d4e32b27d";
 		actual = ByteArrayChecksumExtensions.getChecksums(HashAlgorithm.SHA_512, secretMessageBytes,
 			secondMessageBytes);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
-		expectedLength = 256;
+		expectedLength = 128;
 		assertEquals(expectedLength, actualLength);
 	}
 

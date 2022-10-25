@@ -114,6 +114,11 @@ public final class FileChecksumExtensions
 	public static String getChecksum(final File file, final String algorithm)
 		throws NoSuchAlgorithmException, IOException
 	{
+		if (file.isDirectory())
+		{
+			DirectoryChecksum directoryChecksum = new DirectoryChecksum(algorithm);
+			return directoryChecksum.update(file.toPath());
+		}
 		return ByteArrayChecksumExtensions.getChecksum(Files.readAllBytes(file.toPath()),
 			algorithm);
 	}

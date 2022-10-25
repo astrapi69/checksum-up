@@ -58,12 +58,13 @@ public final class ByteArrayChecksumExtensions
 	public static String getChecksums(final Algorithm algorithm, final byte[]... byteArrays)
 		throws NoSuchAlgorithmException
 	{
-		StringBuilder sb = new StringBuilder();
+		final MessageDigest messageDigest = MessageDigest.getInstance(algorithm.getAlgorithm());
+		messageDigest.reset();
 		for (byte[] byteArray : byteArrays)
 		{
-			sb.append(getChecksum(byteArray, algorithm.getAlgorithm()));
+			messageDigest.update(byteArray);
 		}
-		return sb.toString();
+		return encodeHex(messageDigest.digest());
 	}
 
 	/**
@@ -104,11 +105,22 @@ public final class ByteArrayChecksumExtensions
 		final MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
 		messageDigest.reset();
 		messageDigest.update(bytes);
-		final byte[] digest = messageDigest.digest();
+		return encodeHex(messageDigest.digest());
+	}
+
+	/**
+	 * Encode the given byte array to hex string
+	 * 
+	 * @param digest
+	 *            the byte array
+	 * @return the hex string
+	 */
+	public static String encodeHex(byte[] digest)
+	{
 		final StringBuilder hexView = new StringBuilder();
-		for (final byte element : digest)
+		for (final byte currentByte : digest)
 		{
-			final String intAsHex = Integer.toHexString(0xFF & element);
+			final String intAsHex = Integer.toHexString(0xFF & currentByte);
 			if (intAsHex.length() == 1)
 			{
 				hexView.append('0');

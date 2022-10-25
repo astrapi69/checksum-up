@@ -246,7 +246,9 @@ public final class ObjectChecksumExtensions
 	 * Gets the checksum from the given serializable objects with an instance of the given algorithm
 	 *
 	 * @param <T>
-	 *            the generic type of the serializable object
+	 *            the generic type of the first given serializable object
+	 * @param <E>
+	 *            the generic type of the second given serializable object
 	 *
 	 * @param serializableObject
 	 *            the serializable object
