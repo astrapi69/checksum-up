@@ -22,8 +22,6 @@ package io.github.astrapi69.checksum;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-import java.io.IOException;
-import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 
 import org.meanbean.test.BeanTester;
@@ -33,10 +31,6 @@ import io.github.astrapi69.AbstractTestCase;
 import io.github.astrapi69.crypt.api.algorithm.Algorithm;
 import io.github.astrapi69.crypt.api.algorithm.HashAlgorithm;
 import io.github.astrapi69.crypt.api.algorithm.MdAlgorithm;
-import io.github.astrapi69.test.object.Factory;
-import io.github.astrapi69.test.object.Person;
-import io.github.astrapi69.test.object.enumtype.Gender;
-import io.github.astrapi69.test.object.factory.TestObjectFactory;
 
 /**
  * The unit test class for the class {@link StringChecksumExtensions}

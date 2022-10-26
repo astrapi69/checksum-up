@@ -63,7 +63,7 @@ public final class ObjectChecksumExtensions
 	public static <T extends Serializable> String getChecksum(final T serializableObject,
 		final Algorithm algorithm) throws NoSuchAlgorithmException, IOException
 	{
-		return getChecksum(serializableObject, algorithm.getAlgorithm());
+		return getChecksum(algorithm.getAlgorithm(), serializableObject);
 	}
 
 	/**
@@ -195,30 +195,6 @@ public final class ObjectChecksumExtensions
 		final T... serializableObjects) throws NoSuchAlgorithmException, IOException
 	{
 		return ByteArrayChecksumExtensions.getChecksum(toByteArray(serializableObjects), algorithm);
-	}
-
-	/**
-	 * Gets the checksum from the given serializable object with an instance of the given algorithm
-	 *
-	 * @param <T>
-	 *            the generic type of the serializable object
-	 *
-	 * @param serializableObject
-	 *            the serializable object
-	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
-	 * @return The checksum from the file as a String object.
-	 * @throws NoSuchAlgorithmException
-	 *             Is thrown if the algorithm is not supported or does not exists.
-	 *             {@link MessageDigest} object.
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static <T extends Serializable> String getChecksum(final T serializableObject,
-		final String algorithm) throws NoSuchAlgorithmException, IOException
-	{
-		return ByteArrayChecksumExtensions.getChecksum(toByteArray(serializableObject), algorithm);
 	}
 
 }

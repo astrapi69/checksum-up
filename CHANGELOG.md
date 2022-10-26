@@ -15,6 +15,7 @@ CHANGED:
 - update of gradle-plugin dependency 'com.diffplug.spotless:spotless-plugin-gradle' to new minor version 6.11.0
 - update of gradle-plugin dependency 'com.github.ben-manes.versions.gradle.plugin' to new version 0.43.0
 - update of test dependency file-worker to new minor version 11.5
+- update of test dependency test-object to new minor version 7.2
 
 Version 2.1
 -------------
