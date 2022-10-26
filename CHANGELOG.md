@@ -8,6 +8,7 @@ ADDED:
 
 - new method created for get checksum from an array of byte arrays
 - new method created for get checksum from a directory
+- new extension class StringChecksumExtensions
 
 CHANGED:
 

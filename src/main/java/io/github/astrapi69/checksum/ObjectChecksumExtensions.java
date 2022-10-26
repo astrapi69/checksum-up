@@ -43,62 +43,6 @@ public final class ObjectChecksumExtensions
 	}
 
 	/**
-	 * Gets the checksum from the given string with an instance of the given algorithm
-	 *
-	 * @param text
-	 *            the string
-	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
-	 * @return The checksum from the file as a String object.
-	 * @throws NoSuchAlgorithmException
-	 *             Is thrown if the algorithm is not supported or does not exists.
-	 *             {@link MessageDigest} object.
-	 */
-	public static String getChecksum(final String text, final Algorithm algorithm)
-		throws NoSuchAlgorithmException
-	{
-		return getChecksum(text, algorithm.getAlgorithm());
-	}
-
-	/**
-	 * Gets the checksum from the given string. If the flag crc is true than the checksum is
-	 * constructed with an instance of <code>java.util.zip.CRC32</code> otherwise with an instance
-	 * of <code>java.util.zip.Adler32</code>.
-	 *
-	 * @param text
-	 *            the string
-	 * @param crc
-	 *            the crc flag
-	 * @return The checksum from the given string as long
-	 */
-	public static long getChecksum(final String text, final boolean crc)
-	{
-		return crc
-			? ByteArrayChecksumExtensions.getCheckSumCRC32(text.getBytes())
-			: ByteArrayChecksumExtensions.getCheckSumAdler32(text.getBytes());
-	}
-
-	/**
-	 * Gets the checksum from the given string with an instance of the given algorithm.
-	 *
-	 * @param text
-	 *            the string
-	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
-	 * @return The checksum from the file as a String object.
-	 * @throws NoSuchAlgorithmException
-	 *             Is thrown if the algorithm is not supported or does not exists.
-	 *             {@link MessageDigest} object.
-	 */
-	public static String getChecksum(final String text, final String algorithm)
-		throws NoSuchAlgorithmException
-	{
-		return ByteArrayChecksumExtensions.getChecksum(text.getBytes(), algorithm);
-	}
-
-	/**
 	 * Gets the checksum from the given object with an instance of the given algorithm
 	 *
 	 * @param <T>
@@ -167,53 +111,6 @@ public final class ObjectChecksumExtensions
 			? ByteArrayChecksumExtensions.getCheckSumCRC32HexString(toByteArray(serializableObject))
 			: ByteArrayChecksumExtensions
 				.getCheckSumAdler32HexString(toByteArray(serializableObject));
-	}
-
-	/**
-	 * Gets the checksum from the given serializable object with an instance of the given algorithm
-	 *
-	 * @param <T>
-	 *            the generic type of the serializable object
-	 *
-	 * @param serializableObject
-	 *            the serializable object
-	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
-	 * @return The checksum from the file as a String object.
-	 * @throws NoSuchAlgorithmException
-	 *             Is thrown if the algorithm is not supported or does not exists.
-	 *             {@link MessageDigest} object.
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static <T extends Serializable> String getChecksum(final T serializableObject,
-		final String algorithm) throws NoSuchAlgorithmException, IOException
-	{
-		return ByteArrayChecksumExtensions.getChecksum(toByteArray(serializableObject), algorithm);
-	}
-
-	/**
-	 * Copies the given object to a byte array
-	 *
-	 * @param <T>
-	 *            the generic type of the given object
-	 * @param object
-	 *            The object to copy
-	 * @return the byte array
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static <T extends Serializable> byte[] toByteArray(final T object) throws IOException
-	{
-		Objects.requireNonNull(object);
-		try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-			ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream))
-		{
-			objectOutputStream.writeObject(object);
-			objectOutputStream.flush();
-			return byteArrayOutputStream.toByteArray();
-		}
 	}
 
 	/**
@@ -294,10 +191,34 @@ public final class ObjectChecksumExtensions
 	 *             Signals that an I/O exception has occurred.
 	 */
 	@SafeVarargs
-	public static <T extends Serializable> String getChecksums(final String algorithm,
+	public static <T extends Serializable> String getChecksum(final String algorithm,
 		final T... serializableObjects) throws NoSuchAlgorithmException, IOException
 	{
 		return ByteArrayChecksumExtensions.getChecksum(toByteArray(serializableObjects), algorithm);
+	}
+
+	/**
+	 * Gets the checksum from the given serializable object with an instance of the given algorithm
+	 *
+	 * @param <T>
+	 *            the generic type of the serializable object
+	 *
+	 * @param serializableObject
+	 *            the serializable object
+	 * @param algorithm
+	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
+	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
+	 * @return The checksum from the file as a String object.
+	 * @throws NoSuchAlgorithmException
+	 *             Is thrown if the algorithm is not supported or does not exists.
+	 *             {@link MessageDigest} object.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static <T extends Serializable> String getChecksum(final T serializableObject,
+		final String algorithm) throws NoSuchAlgorithmException, IOException
+	{
+		return ByteArrayChecksumExtensions.getChecksum(toByteArray(serializableObject), algorithm);
 	}
 
 }
