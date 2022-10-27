@@ -80,7 +80,7 @@ public class ByteArrayChecksumExtensionsTest extends AbstractTestCase<Long, Long
 	}
 
 	/**
-	 * Test method for {@link ByteArrayChecksumExtensions#getChecksums(Algorithm, byte[]...)}
+	 * Test method for {@link ByteArrayChecksumExtensions#getChecksum(Algorithm, byte[]...)}
 	 *
 	 * @throws NoSuchAlgorithmException
 	 *             Is thrown if the algorithm is not supported or does not exists.
@@ -98,7 +98,7 @@ public class ByteArrayChecksumExtensionsTest extends AbstractTestCase<Long, Long
 		final byte[] secretMessageBytes = secretMessage.getBytes(StandardCharsets.UTF_8);
 		final byte[] secondMessageBytes = secondMessage.getBytes(StandardCharsets.UTF_8);
 		expected = "3a3a8fdbe1e34b21108e3bb9edf958a5";
-		actual = ByteArrayChecksumExtensions.getChecksums(MdAlgorithm.MD2, secretMessageBytes,
+		actual = ByteArrayChecksumExtensions.getChecksum(MdAlgorithm.MD2, secretMessageBytes,
 			secondMessageBytes);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
@@ -106,14 +106,14 @@ public class ByteArrayChecksumExtensionsTest extends AbstractTestCase<Long, Long
 		assertEquals(expectedLength, actualLength);
 
 		expected = "626ee46cd64f219ba303f3ff8746628e";
-		actual = ByteArrayChecksumExtensions.getChecksums(MdAlgorithm.MD5, secretMessageBytes,
+		actual = ByteArrayChecksumExtensions.getChecksum(MdAlgorithm.MD5, secretMessageBytes,
 			secondMessageBytes);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		assertEquals(expectedLength, actualLength);
 
 		expected = "fcd2f026f3455f42cc23eae194b7e6d31a8e816a";
-		actual = ByteArrayChecksumExtensions.getChecksums(HashAlgorithm.SHA_1, secretMessageBytes,
+		actual = ByteArrayChecksumExtensions.getChecksum(HashAlgorithm.SHA_1, secretMessageBytes,
 			secondMessageBytes);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
@@ -121,7 +121,7 @@ public class ByteArrayChecksumExtensionsTest extends AbstractTestCase<Long, Long
 		assertEquals(expectedLength, actualLength);
 
 		expected = "5524e04736a8198e7db6c0033f7f974f40c01bd654f78eb4f1bafb05badbf30c";
-		actual = ByteArrayChecksumExtensions.getChecksums(HashAlgorithm.SHA_256, secretMessageBytes,
+		actual = ByteArrayChecksumExtensions.getChecksum(HashAlgorithm.SHA_256, secretMessageBytes,
 			secondMessageBytes);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
@@ -129,7 +129,7 @@ public class ByteArrayChecksumExtensionsTest extends AbstractTestCase<Long, Long
 		assertEquals(expectedLength, actualLength);
 
 		expected = "ac7886bf6c9cacfc97f524b165e7a7ff874b4d26cd54a09798afa6d0ec03d68830f6f4a6c290674fcbaabdbea00d2409";
-		actual = ByteArrayChecksumExtensions.getChecksums(HashAlgorithm.SHA_384, secretMessageBytes,
+		actual = ByteArrayChecksumExtensions.getChecksum(HashAlgorithm.SHA_384, secretMessageBytes,
 			secondMessageBytes);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
@@ -137,7 +137,7 @@ public class ByteArrayChecksumExtensionsTest extends AbstractTestCase<Long, Long
 		assertEquals(expectedLength, actualLength);
 
 		expected = "f4867591ef38f3dc54d9b4d2b8c91a8cb042c76d67ba9e8493dd57d675390c47fd33d5cbbdb2356a99607be39028acb8f704baa4dcbf55f9bcd8d44d4e32b27d";
-		actual = ByteArrayChecksumExtensions.getChecksums(HashAlgorithm.SHA_512, secretMessageBytes,
+		actual = ByteArrayChecksumExtensions.getChecksum(HashAlgorithm.SHA_512, secretMessageBytes,
 			secondMessageBytes);
 		assertEquals(expected, actual);
 		actualLength = actual.length();

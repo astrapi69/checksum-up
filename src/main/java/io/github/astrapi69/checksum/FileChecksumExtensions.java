@@ -31,8 +31,7 @@ import java.util.zip.CheckedInputStream;
 import io.github.astrapi69.crypt.api.algorithm.Algorithm;
 
 /**
- * The class {@link FileChecksumExtensions} is a utility class for computing checksum from files and
- * byte arrays.
+ * The class {@link FileChecksumExtensions} provides algorithms for computing checksum from files
  *
  * @author Asterios Raptis
  * @version 1.0
@@ -44,19 +43,19 @@ public final class FileChecksumExtensions
 	}
 
 	/**
-	 * Gets the checksum from the given file with an instance of the given algorithm.
+	 * Gets the checksum from the given file with an instance of the given {@link Algorithm} object
 	 *
 	 * @param file
-	 *            the file.
+	 *            the file
 	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
+	 *            the {@link Algorithm} object that provides the algorithm as {@link String} object
+	 *            to get the checksum. This could be for instance "MD2", "MD4", "MD5", "SHA-1",
+	 *            "SHA-256", "SHA-384" or "SHA-512"
 	 * @return The checksum from the file as a String object.
 	 * @throws NoSuchAlgorithmException
-	 *             Is thrown if the algorithm is not supported or does not exists.
-	 *             {@link java.security.MessageDigest} object.
+	 *             Is thrown if the algorithm is not supported or does not exist
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
 	public static String getChecksum(final File file, final Algorithm algorithm)
 		throws NoSuchAlgorithmException, IOException
@@ -65,19 +64,19 @@ public final class FileChecksumExtensions
 	}
 
 	/**
-	 * Gets the checksum from the given file. If the flag crc is true than the CheckedInputStream is
+	 * Gets the checksum from the given file. If the flag crc is true then the CheckedInputStream is
 	 * constructed with an instance of <code>java.util.zip.CRC32</code> otherwise with an instance
-	 * of <code>java.util.zip.Adler32</code>.
+	 * of <code>java.util.zip.Adler32</code>
 	 *
 	 * @param file
-	 *            The file The file from what to get the checksum.
+	 *            The file to resolve the checksum
 	 * @param crc
-	 *            if the flag crc is true than the CheckedInputStream is constructed with an
+	 *            if the flag crc is true then the CheckedInputStream is constructed with an
 	 *            instance of {@link java.util.zip.CRC32} object otherwise it is constructed with an
-	 *            instance of{ @link java.util.zip.Adler32} object.
-	 * @return The checksum from the given file as long.
+	 *            instance of {@link java.util.zip.Adler32} object
+	 * @return The checksum from the given file as long value
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
 	public static long getChecksum(final File file, final boolean crc) throws IOException
 	{
@@ -98,18 +97,18 @@ public final class FileChecksumExtensions
 	}
 
 	/**
-	 * Gets the checksum from the given file with an instance of the given algorithm.
+	 * Gets the checksum from the given file with an instance of the given algorithm
 	 *
 	 * @param file
-	 *            the file.
+	 *            the file
 	 * @param algorithm
 	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
-	 * @return The checksum from the file as a String object.
+	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512"
+	 * @return The checksum from the file as a String object
 	 * @throws NoSuchAlgorithmException
-	 *             Is thrown if the algorithm is not supported or does not exists.
+	 *             Is thrown if the algorithm is not supported or does not exist
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
 	public static String getChecksum(final File file, final String algorithm)
 		throws NoSuchAlgorithmException, IOException
@@ -128,10 +127,10 @@ public final class FileChecksumExtensions
 	 * object
 	 *
 	 * @param file
-	 *            The file.
-	 * @return The checksum from the file as long.
+	 *            The file
+	 * @return The checksum from the file as long value
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
 	public static long getCheckSumAdler32(final File file) throws IOException
 	{
@@ -143,10 +142,10 @@ public final class FileChecksumExtensions
 	 * object
 	 *
 	 * @param file
-	 *            The file.
-	 * @return The checksum from the file as long.
+	 *            The file
+	 * @return The checksum from the file as long value
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
 	public static String getCheckSumAdler32HexString(final File file) throws IOException
 	{
@@ -158,10 +157,10 @@ public final class FileChecksumExtensions
 	 * Gets the checksum from the given file with an instance of {@link java.util.zip.CRC32} object
 	 *
 	 * @param file
-	 *            The file.
-	 * @return The checksum from the file as long.
+	 *            The file
+	 * @return The checksum from the file as long
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
 	public static long getCheckSumCRC32(final File file) throws IOException
 	{
@@ -172,10 +171,10 @@ public final class FileChecksumExtensions
 	 * Gets the checksum from the given file with an instance of {@link java.util.zip.CRC32} object
 	 *
 	 * @param file
-	 *            The file.
-	 * @return The checksum from the file as long.
+	 *            The file
+	 * @return The checksum from the file as long value
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
 	public static String getCheckSumCRC32HexString(final File file) throws IOException
 	{
