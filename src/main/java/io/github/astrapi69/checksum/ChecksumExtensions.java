@@ -155,7 +155,7 @@ public final class ChecksumExtensions
 		{
 			return ChecksumAlgorithm.SHA_512;
 		}
-		return ChecksumAlgorithm.UNDEFINED;
+		return ChecksumAlgorithm.MD5;
 	}
 
 }

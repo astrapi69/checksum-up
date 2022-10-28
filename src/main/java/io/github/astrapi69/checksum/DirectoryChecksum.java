@@ -33,56 +33,40 @@ public class DirectoryChecksum
 {
 	MessageDigest messageDigest;
 
-	DirectoryChecksum(String algorithm)
+	DirectoryChecksum(String algorithm) throws NoSuchAlgorithmException
 	{
 		Objects.requireNonNull(algorithm, "Given algorithm is null");
-		this.messageDigest = newMessageDigest(algorithm);
+		this.messageDigest = MessageDigest.getInstance(algorithm);
 		this.messageDigest.reset();
 	}
 
-	private MessageDigest newMessageDigest(String algorithm)
+	public String update(Path dirPath) throws IOException
 	{
-		try
-		{
-			return MessageDigest.getInstance(algorithm);
-		}
-		catch (NoSuchAlgorithmException e)
-		{
-			throw new RuntimeException(e);
-		}
-	}
-
-	public String update(Path dirPath)
-	{
-		try
-		{
-			Files.newDirectoryStream(dirPath).forEach(currentFile -> {
-				if (!Files.isDirectory(currentFile))
+		Files.newDirectoryStream(dirPath).forEach(currentFile -> {
+			if (!Files.isDirectory(currentFile))
+			{
+				try
 				{
-					messageDigest.update(getBytes(currentFile));
+					messageDigest.update(Files.readAllBytes(currentFile));
 				}
-				else
+				catch (IOException e)
+				{
+					throw new RuntimeException(e);
+				}
+			}
+			else
+			{
+				try
 				{
 					update(currentFile);
 				}
-			});
-		}
-		catch (IOException e)
-		{
-			throw new RuntimeException(e);
-		}
+				catch (IOException e)
+				{
+					throw new RuntimeException(e);
+				}
+			}
+		});
 		return encodeHex(messageDigest.digest());
 	}
 
-	private byte[] getBytes(Path currentFile)
-	{
-		try
-		{
-			return Files.readAllBytes(currentFile);
-		}
-		catch (IOException e)
-		{
-			throw new RuntimeException(e);
-		}
-	}
 }

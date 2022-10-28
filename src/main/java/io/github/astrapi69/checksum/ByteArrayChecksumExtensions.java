@@ -49,8 +49,8 @@ public final class ByteArrayChecksumExtensions
 	 *            the byte array
 	 * @param algorithm
 	 *            the {@link Algorithm} object that provides the algorithm as {@link String} object
-	 *            to get the checksum. This could be for instance "MD2", "MD4", "MD5", "SHA-1",
-	 *            "SHA-256", "SHA-384" or "SHA-512"
+	 *            to get the checksum. This can be for instance "MD2", "MD5", "SHA-1", "SHA-256",
+	 *            "SHA-384" or "SHA-512"
 	 * @return The checksum from the given byte array as {@link String} object
 	 * @throws NoSuchAlgorithmException
 	 *             Is thrown if the algorithm is not supported or does not exist
@@ -67,8 +67,8 @@ public final class ByteArrayChecksumExtensions
 	 * @param bytes
 	 *            the byte array
 	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD2", "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
+	 *            the algorithm to get the checksum. This can be for instance "MD2", "MD5", "SHA-1",
+	 *            "SHA-256", "SHA-384" or "SHA-512"
 	 * @return The checksum from the given byte array as {@link String} object
 	 * @throws NoSuchAlgorithmException
 	 *             Is thrown if the algorithm is not supported or does not exist
@@ -86,8 +86,8 @@ public final class ByteArrayChecksumExtensions
 	 *            the {@link Byte} object array
 	 * @param algorithm
 	 *            the {@link Algorithm} object that provides the algorithm as {@link String} object
-	 *            to get the checksum. This could be for instance "MD2", "MD4", "MD5", "SHA-1",
-	 *            "SHA-256", "SHA-384" or "SHA-512"
+	 *            to get the checksum. This can be for instance "MD2", "MD5", "SHA-1", "SHA-256",
+	 *            "SHA-384" or "SHA-512"
 	 * @return The checksum from the given {@link Byte} object array as {@link String} object
 	 * @throws NoSuchAlgorithmException
 	 *             Is thrown if the algorithm is not supported or does not exist
@@ -104,8 +104,8 @@ public final class ByteArrayChecksumExtensions
 	 * @param bytes
 	 *            the {@link Byte} object array
 	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD2", "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512"
+	 *            the algorithm to get the checksum. This can be for instance "MD2", "MD5", "SHA-1",
+	 *            "SHA-256", "SHA-384" or "SHA-512"
 	 * @return The checksum from the given {@link Byte} object array as {@link String} object
 	 * @throws NoSuchAlgorithmException
 	 *             Is thrown if the algorithm is not supported or does not exist
@@ -121,8 +121,8 @@ public final class ByteArrayChecksumExtensions
 	 *
 	 * @param algorithm
 	 *            the {@link Algorithm} object that provides the algorithm as {@link String} object
-	 *            to get the checksum. This could be for instance "MD2", "MD4", "MD5", "SHA-1",
-	 *            "SHA-256", "SHA-384" or "SHA-512"
+	 *            to get the checksum. This can be for instance "MD2", "MD5", "SHA-1", "SHA-256",
+	 *            "SHA-384" or "SHA-512"
 	 * @param byteArrays
 	 *            the array of byte arrays
 	 * @return The checksum from the given byte arrays as {@link String} object
@@ -139,8 +139,8 @@ public final class ByteArrayChecksumExtensions
 	 * Gets the checksum from the given byte arrays with the given algorithm
 	 *
 	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
+	 *            the algorithm to get the checksum. This can be for instance "MD2", "MD5", "SHA-1",
+	 *            "SHA-256", "SHA-384" or "SHA-512".
 	 * @param byteArrays
 	 *            the array of byte arrays
 	 * @return The checksum from the given byte arrays as {@link String} object

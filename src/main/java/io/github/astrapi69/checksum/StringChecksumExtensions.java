@@ -20,18 +20,14 @@
  */
 package io.github.astrapi69.checksum;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Objects;
-
 import io.github.astrapi69.crypt.api.algorithm.Algorithm;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
- * The class {@link StringChecksumExtensions} is a utility class for computing checksum from objects
+ * The class {@link StringChecksumExtensions} provides algorithms for computing checksum from string
+ * objects
  *
  * @author Asterios Raptis
  * @version 1.0
@@ -48,8 +44,8 @@ public final class StringChecksumExtensions
 	 * @param text
 	 *            the string
 	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
+	 *            the algorithm to get the checksum. This can be for instance "MD2", "MD5", "SHA-1",
+	 *            "SHA-256", "SHA-384" or "SHA-512".
 	 * @return The checksum from the file as a String object.
 	 * @throws NoSuchAlgorithmException
 	 *             Is thrown if the algorithm is not supported or does not exists.
@@ -85,8 +81,8 @@ public final class StringChecksumExtensions
 	 * @param text
 	 *            the string
 	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
+	 *            the algorithm to get the checksum. This can be for instance "MD2", "MD5", "SHA-1",
+	 *            "SHA-256", "SHA-384" or "SHA-512".
 	 * @return The checksum from the file as a String object.
 	 * @throws NoSuchAlgorithmException
 	 *             Is thrown if the algorithm is not supported or does not exists.

@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 
+import io.github.astrapi69.crypt.api.algorithm.ChecksumAlgorithm;
 import io.github.astrapi69.test.object.factory.TestObjectFactory;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
@@ -66,7 +67,7 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 
 		anotherPerson = Person.builder().gender(Gender.FEMALE).name("Anton").married(false)
 			.about("I'm a dev guy").nickname("admin").build();
-		actual = ObjectChecksumExtensions.getChecksum(MdAlgorithm.MD2.getAlgorithm(), person,
+		actual = ObjectChecksumExtensions.getChecksum(ChecksumAlgorithm.MD2.getAlgorithm(), person,
 			anotherPerson);
 		expected = "8cb07185f0ca40fb0294514fe88ad3cd";
 		assertEquals(expected, actual);
@@ -94,7 +95,7 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		factory = TestObjectFactory.newFactory();
 
 		actual = ObjectChecksumExtensions.getChecksum(person, factory,
-			MdAlgorithm.MD2.getAlgorithm());
+			ChecksumAlgorithm.MD2.getAlgorithm());
 		expected = "0dc30316b12e8c7c359bf86d58aee2ef";
 		assertEquals(expected, actual);
 	}
@@ -172,46 +173,111 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 			.about("I'm a beast and beautiful").nickname("beast").build();
 
 		expected = "b1def362c48394716231bb7e42c14b3c";
-		actual = ObjectChecksumExtensions.getChecksum(person, MdAlgorithm.MD2);
+		actual = ObjectChecksumExtensions.getChecksum(person, ChecksumAlgorithm.MD2);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "6b80d6c08539433402f8b11775854717";
-		actual = ObjectChecksumExtensions.getChecksum(person, MdAlgorithm.MD5);
+		actual = ObjectChecksumExtensions.getChecksum(person, ChecksumAlgorithm.MD5);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		assertEquals(expectedLength, actualLength);
 
 		expected = "36a96d39dab8e137aebd72fed5f71ff3ddfc1cc5";
-		actual = ObjectChecksumExtensions.getChecksum(person, HashAlgorithm.SHA_1);
+		actual = ObjectChecksumExtensions.getChecksum(person, ChecksumAlgorithm.SHA_1);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 40;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "1c8b7990650072c991ceaed72639e4c7416356af225d52d796c5d1aeb14818b1";
-		actual = ObjectChecksumExtensions.getChecksum(person, HashAlgorithm.SHA_256);
+		actual = ObjectChecksumExtensions.getChecksum(person, ChecksumAlgorithm.SHA_256);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 64;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "72d25f5e70e0a5423d2d1629fe67950d00cec139b43f7714a74aea27f6eaab29162f65ed6776bcc360f97310498fed15";
-		actual = ObjectChecksumExtensions.getChecksum(person, HashAlgorithm.SHA_384);
+		actual = ObjectChecksumExtensions.getChecksum(person, ChecksumAlgorithm.SHA_384);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 96;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "e586ea0a18c6b6cb500700d589fa382d4d6cfd94b3a79ae8381115c4713528429bdcdcc0c57157fad133b3af2f98177783aee6a19582d8ceed6df9d3ad2f6299";
-		actual = ObjectChecksumExtensions.getChecksum(person, HashAlgorithm.SHA_512);
+		actual = ObjectChecksumExtensions.getChecksum(person, ChecksumAlgorithm.SHA_512);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 128;
 		assertEquals(expectedLength, actualLength);
+	}
 
+	/**
+	 * Test method for {@link ObjectChecksumExtensions#getChecksum(Serializable, String)}
+	 *
+	 * @throws NoSuchAlgorithmException
+	 *             is thrown if instantiation of the SecretKeyFactory object fails.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testGetChecksumSerializableString() throws IOException, NoSuchAlgorithmException
+	{
+		String expected;
+		String actual;
+		Person person;
+		int expectedLength;
+		int actualLength;
+
+		person = Person.builder().gender(Gender.FEMALE).name("Anna").married(false)
+			.about("I'm a beast and beautiful").nickname("beast").build();
+
+		expected = "b1def362c48394716231bb7e42c14b3c";
+		actual = ObjectChecksumExtensions.getChecksum(person, ChecksumAlgorithm.MD2.getAlgorithm());
+		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 32;
+		assertEquals(expectedLength, actualLength);
+
+		expected = "6b80d6c08539433402f8b11775854717";
+		actual = ObjectChecksumExtensions.getChecksum(person, ChecksumAlgorithm.MD5.getAlgorithm());
+		assertEquals(expected, actual);
+		actualLength = actual.length();
+		assertEquals(expectedLength, actualLength);
+
+		expected = "36a96d39dab8e137aebd72fed5f71ff3ddfc1cc5";
+		actual = ObjectChecksumExtensions.getChecksum(person,
+			ChecksumAlgorithm.SHA_1.getAlgorithm());
+		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 40;
+		assertEquals(expectedLength, actualLength);
+
+		expected = "1c8b7990650072c991ceaed72639e4c7416356af225d52d796c5d1aeb14818b1";
+		actual = ObjectChecksumExtensions.getChecksum(person,
+			ChecksumAlgorithm.SHA_256.getAlgorithm());
+		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 64;
+		assertEquals(expectedLength, actualLength);
+
+		expected = "72d25f5e70e0a5423d2d1629fe67950d00cec139b43f7714a74aea27f6eaab29162f65ed6776bcc360f97310498fed15";
+		actual = ObjectChecksumExtensions.getChecksum(person,
+			ChecksumAlgorithm.SHA_384.getAlgorithm());
+		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 96;
+		assertEquals(expectedLength, actualLength);
+
+		expected = "e586ea0a18c6b6cb500700d589fa382d4d6cfd94b3a79ae8381115c4713528429bdcdcc0c57157fad133b3af2f98177783aee6a19582d8ceed6df9d3ad2f6299";
+		actual = ObjectChecksumExtensions.getChecksum(person,
+			ChecksumAlgorithm.SHA_512.getAlgorithm());
+		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 128;
+		assertEquals(expectedLength, actualLength);
 	}
 
 	/**
@@ -236,41 +302,45 @@ public class ObjectChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 			.about("I'm a beast and beautiful").nickname("beast").build();
 
 		expected = "b1def362c48394716231bb7e42c14b3c";
-		actual = ObjectChecksumExtensions.getChecksum(MdAlgorithm.MD2.getAlgorithm(), person);
+		actual = ObjectChecksumExtensions.getChecksum(ChecksumAlgorithm.MD2.getAlgorithm(), person);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "6b80d6c08539433402f8b11775854717";
-		actual = ObjectChecksumExtensions.getChecksum(MdAlgorithm.MD5.getAlgorithm(), person);
+		actual = ObjectChecksumExtensions.getChecksum(ChecksumAlgorithm.MD5.getAlgorithm(), person);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		assertEquals(expectedLength, actualLength);
 
 		expected = "36a96d39dab8e137aebd72fed5f71ff3ddfc1cc5";
-		actual = ObjectChecksumExtensions.getChecksum(HashAlgorithm.SHA_1.getAlgorithm(), person);
+		actual = ObjectChecksumExtensions.getChecksum(ChecksumAlgorithm.SHA_1.getAlgorithm(),
+			person);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 40;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "1c8b7990650072c991ceaed72639e4c7416356af225d52d796c5d1aeb14818b1";
-		actual = ObjectChecksumExtensions.getChecksum(HashAlgorithm.SHA_256.getAlgorithm(), person);
+		actual = ObjectChecksumExtensions.getChecksum(ChecksumAlgorithm.SHA_256.getAlgorithm(),
+			person);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 64;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "72d25f5e70e0a5423d2d1629fe67950d00cec139b43f7714a74aea27f6eaab29162f65ed6776bcc360f97310498fed15";
-		actual = ObjectChecksumExtensions.getChecksum(HashAlgorithm.SHA_384.getAlgorithm(), person);
+		actual = ObjectChecksumExtensions.getChecksum(ChecksumAlgorithm.SHA_384.getAlgorithm(),
+			person);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 96;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "e586ea0a18c6b6cb500700d589fa382d4d6cfd94b3a79ae8381115c4713528429bdcdcc0c57157fad133b3af2f98177783aee6a19582d8ceed6df9d3ad2f6299";
-		actual = ObjectChecksumExtensions.getChecksum(HashAlgorithm.SHA_512.getAlgorithm(), person);
+		actual = ObjectChecksumExtensions.getChecksum(ChecksumAlgorithm.SHA_512.getAlgorithm(),
+			person);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 128;
