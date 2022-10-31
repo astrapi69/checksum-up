@@ -18,32 +18,55 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.test.object.factory;
+package io.github.astrapi69.checksum;
 
-import io.github.astrapi69.test.object.Employee;
-import io.github.astrapi69.test.object.Factory;
-import io.github.astrapi69.test.object.Person;
-import io.github.astrapi69.test.object.enumtype.Gender;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 
-public class TestObjectFactory
+import static io.github.astrapi69.checksum.ByteArrayChecksumExtensions.encodeHex;
+
+public class DirectoryChecksum
 {
+	MessageDigest messageDigest;
 
-	public static Person newPerson()
+	DirectoryChecksum(String algorithm) throws NoSuchAlgorithmException
 	{
-		return Person.builder().gender(Gender.FEMALE).name("Anna").married(false)
-			.about("I'm a beast and beautiful").nickname("beast").build();
+		Objects.requireNonNull(algorithm, "Given algorithm is null");
+		this.messageDigest = MessageDigest.getInstance(algorithm);
+		this.messageDigest.reset();
 	}
 
-	public static Factory newFactory()
+	public String update(Path dirPath) throws IOException
 	{
-		return Factory.builder()
-			.employee(Employee.builder().id("1")
-				.person(Person.builder().name("Lea").gender(Gender.FEMALE).married(Boolean.FALSE)
-					.build())
-				.build())
-			.employee(Employee.builder().id("2").person(
-				Person.builder().name("Luke").gender(Gender.MALE).married(Boolean.FALSE).build())
-				.build())
-			.name("StarPiece").location("Greece/Katerini").build();
+		Files.newDirectoryStream(dirPath).forEach(currentFile -> {
+			if (!Files.isDirectory(currentFile))
+			{
+				try
+				{
+					messageDigest.update(Files.readAllBytes(currentFile));
+				}
+				catch (IOException e)
+				{
+					throw new RuntimeException(e);
+				}
+			}
+			else
+			{
+				try
+				{
+					update(currentFile);
+				}
+				catch (IOException e)
+				{
+					throw new RuntimeException(e);
+				}
+			}
+		});
+		return encodeHex(messageDigest.digest());
 	}
+
 }

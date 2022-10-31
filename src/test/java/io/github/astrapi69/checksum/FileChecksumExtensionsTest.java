@@ -26,14 +26,13 @@ import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
+import io.github.astrapi69.crypt.api.algorithm.ChecksumAlgorithm;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.github.astrapi69.AbstractTestCase;
 import io.github.astrapi69.crypt.api.algorithm.Algorithm;
-import io.github.astrapi69.crypt.api.algorithm.HashAlgorithm;
-import io.github.astrapi69.crypt.api.algorithm.MdAlgorithm;
 import io.github.astrapi69.file.search.PathFinder;
 
 /**
@@ -141,41 +140,41 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		int actualLength;
 
 		expected = "f57f8379e8c62db6135f14d93a84ffd3";
-		actual = FileChecksumExtensions.getChecksum(testFile, MdAlgorithm.MD2);
+		actual = FileChecksumExtensions.getChecksum(testFile, ChecksumAlgorithm.MD2);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "3a37a2c10a590785dbfb9ce3b15b0464";
-		actual = FileChecksumExtensions.getChecksum(testFile, MdAlgorithm.MD5);
+		actual = FileChecksumExtensions.getChecksum(testFile, ChecksumAlgorithm.MD5);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		assertEquals(expectedLength, actualLength);
 
 		expected = "496dfa0ecf50cc6e3eda41fd3258272c2f2f0ff1";
-		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_1);
+		actual = FileChecksumExtensions.getChecksum(testFile, ChecksumAlgorithm.SHA_1);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 40;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "94151a5c66422a9adf706937eeb7fafec25032c380b55b0e92695baf297fb747";
-		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_256);
+		actual = FileChecksumExtensions.getChecksum(testFile, ChecksumAlgorithm.SHA_256);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 64;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "c1bc0091901a944828ca56f236f068d318086a55b96e045b1e7415df1449eb9c8e54546fec4b759ad2c6f7e3fbab7561";
-		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_384);
+		actual = FileChecksumExtensions.getChecksum(testFile, ChecksumAlgorithm.SHA_384);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 96;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "4d0c14f299254e58dcea1f524ca08af5f0776b1f5070919a859b92c2ab350635375862ab0727fd5e34ff35da837bd836a17047544db8df63adc4912211ea7f02";
-		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_512);
+		actual = FileChecksumExtensions.getChecksum(testFile, ChecksumAlgorithm.SHA_512);
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 128;
@@ -222,41 +221,110 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		int actualLength;
 
 		expected = "f57f8379e8c62db6135f14d93a84ffd3";
-		actual = FileChecksumExtensions.getChecksum(testFile, MdAlgorithm.MD2.getAlgorithm());
+		actual = FileChecksumExtensions.getChecksum(testFile, ChecksumAlgorithm.MD2.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "3a37a2c10a590785dbfb9ce3b15b0464";
-		actual = FileChecksumExtensions.getChecksum(testFile, MdAlgorithm.MD5.getAlgorithm());
+		actual = FileChecksumExtensions.getChecksum(testFile, ChecksumAlgorithm.MD5.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		assertEquals(expectedLength, actualLength);
 
 		expected = "496dfa0ecf50cc6e3eda41fd3258272c2f2f0ff1";
-		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_1.getAlgorithm());
+		actual = FileChecksumExtensions.getChecksum(testFile,
+			ChecksumAlgorithm.SHA_1.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 40;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "94151a5c66422a9adf706937eeb7fafec25032c380b55b0e92695baf297fb747";
-		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_256.getAlgorithm());
+		actual = FileChecksumExtensions.getChecksum(testFile,
+			ChecksumAlgorithm.SHA_256.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 64;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "c1bc0091901a944828ca56f236f068d318086a55b96e045b1e7415df1449eb9c8e54546fec4b759ad2c6f7e3fbab7561";
-		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_384.getAlgorithm());
+		actual = FileChecksumExtensions.getChecksum(testFile,
+			ChecksumAlgorithm.SHA_384.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 96;
 		assertEquals(expectedLength, actualLength);
 
 		expected = "4d0c14f299254e58dcea1f524ca08af5f0776b1f5070919a859b92c2ab350635375862ab0727fd5e34ff35da837bd836a17047544db8df63adc4912211ea7f02";
-		actual = FileChecksumExtensions.getChecksum(testFile, HashAlgorithm.SHA_512.getAlgorithm());
+		actual = FileChecksumExtensions.getChecksum(testFile,
+			ChecksumAlgorithm.SHA_512.getAlgorithm());
+		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 128;
+		assertEquals(expectedLength, actualLength);
+	}
+
+	/**
+	 * Test method for {@link FileChecksumExtensions#getChecksum(File, String)}
+	 *
+	 * @throws NoSuchAlgorithmException
+	 *             is thrown if instantiation of the SecretKeyFactory object fails.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testGetChecksumFileStringWithDirectory()
+		throws NoSuchAlgorithmException, IOException
+	{
+		String expected;
+		String actual;
+		int expectedLength;
+		int actualLength;
+		File srcTestResourcesDir = PathFinder.getSrcTestResourcesDir();
+		expected = "b6ed34c32fbb03757de0dbb1be149b03";
+		actual = FileChecksumExtensions.getChecksum(srcTestResourcesDir,
+			ChecksumAlgorithm.MD2.getAlgorithm());
+		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 32;
+		assertEquals(expectedLength, actualLength);
+
+		expected = "34a863c18dd458a32ca56dd9b74695ae";
+		actual = FileChecksumExtensions.getChecksum(srcTestResourcesDir,
+			ChecksumAlgorithm.MD5.getAlgorithm());
+		assertEquals(expected, actual);
+		actualLength = actual.length();
+		assertEquals(expectedLength, actualLength);
+
+		expected = "7a26a3b640a61ce9f6aaa3cfbb760bb0e8000f69";
+		actual = FileChecksumExtensions.getChecksum(srcTestResourcesDir,
+			ChecksumAlgorithm.SHA_1.getAlgorithm());
+		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 40;
+		assertEquals(expectedLength, actualLength);
+
+		expected = "530cf62c85fd570bf1262c5339f360d3067f2a05abf08e381a9315be0f4f1ed0";
+		actual = FileChecksumExtensions.getChecksum(srcTestResourcesDir,
+			ChecksumAlgorithm.SHA_256.getAlgorithm());
+		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 64;
+		assertEquals(expectedLength, actualLength);
+
+		expected = "a36d562510c2386c2a6579818472df7f6a5b4a66d956aae85644e16e3a9dce4ccaa5a4805401828d73478b94c6884386";
+		actual = FileChecksumExtensions.getChecksum(srcTestResourcesDir,
+			ChecksumAlgorithm.SHA_384.getAlgorithm());
+		assertEquals(expected, actual);
+		actualLength = actual.length();
+		expectedLength = 96;
+		assertEquals(expectedLength, actualLength);
+
+		expected = "1b52fe0c4a775540b6fb1fdeaed770abdd747f5918d9b3cb11b2d37ae9341b99bf68f3f9eb5cec34eee49786efef0d38bbd31c90b764aea6ab74d9d544dd4acd";
+		actual = FileChecksumExtensions.getChecksum(srcTestResourcesDir,
+			ChecksumAlgorithm.SHA_512.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 128;

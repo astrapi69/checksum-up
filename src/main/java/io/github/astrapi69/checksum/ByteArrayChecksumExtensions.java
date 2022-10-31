@@ -29,8 +29,8 @@ import java.util.zip.Checksum;
 import io.github.astrapi69.crypt.api.algorithm.Algorithm;
 
 /**
- * The class {@link ByteArrayChecksumExtensions} is a utility class for computing checksum from byte
- * arrays
+ * The class {@link ByteArrayChecksumExtensions} provides algorithms for computing checksum from
+ * byte arrays and {@link Byte} object arrays
  *
  * @author Asterios Raptis
  * @version 1.0
@@ -43,41 +43,17 @@ public final class ByteArrayChecksumExtensions
 	}
 
 	/**
-	 * Gets the checksum from the given byte arrays with the given algorithm
-	 *
-	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
-	 * @param byteArrays
-	 *            the array of byte arrays
-	 * @return The checksum from the given byte arrays as a String object.
-	 * @throws NoSuchAlgorithmException
-	 *             Is thrown if the algorithm is not supported or does not exists.
-	 *             {@link MessageDigest} object.
-	 */
-	public static String getChecksums(final Algorithm algorithm, final byte[]... byteArrays)
-		throws NoSuchAlgorithmException
-	{
-		StringBuilder sb = new StringBuilder();
-		for (byte[] byteArray : byteArrays)
-		{
-			sb.append(getChecksum(byteArray, algorithm.getAlgorithm()));
-		}
-		return sb.toString();
-	}
-
-	/**
-	 * Gets the checksum from the given byte array with an instance of.
+	 * Gets the checksum from the given byte array
 	 *
 	 * @param bytes
-	 *            the byte array.
+	 *            the byte array
 	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
-	 * @return The checksum from the file as a String object.
+	 *            the {@link Algorithm} object that provides the algorithm as {@link String} object
+	 *            to get the checksum. This can be for instance "MD2", "MD5", "SHA-1", "SHA-256",
+	 *            "SHA-384" or "SHA-512"
+	 * @return The checksum from the given byte array as {@link String} object
 	 * @throws NoSuchAlgorithmException
-	 *             Is thrown if the algorithm is not supported or does not exists.
-	 *             {@link MessageDigest} object.
+	 *             Is thrown if the algorithm is not supported or does not exist
 	 */
 	public static String getChecksum(final byte[] bytes, final Algorithm algorithm)
 		throws NoSuchAlgorithmException
@@ -86,50 +62,35 @@ public final class ByteArrayChecksumExtensions
 	}
 
 	/**
-	 * Gets the checksum from the given byte array with an instance of.
+	 * Gets the checksum from the given byte array
 	 *
 	 * @param bytes
-	 *            the byte array.
+	 *            the byte array
 	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
-	 * @return The checksum from the file as a String object.
+	 *            the algorithm to get the checksum. This can be for instance "MD2", "MD5", "SHA-1",
+	 *            "SHA-256", "SHA-384" or "SHA-512"
+	 * @return The checksum from the given byte array as {@link String} object
 	 * @throws NoSuchAlgorithmException
-	 *             Is thrown if the algorithm is not supported or does not exists.
-	 *             {@link MessageDigest} object.
+	 *             Is thrown if the algorithm is not supported or does not exist
 	 */
 	public static String getChecksum(final byte[] bytes, final String algorithm)
 		throws NoSuchAlgorithmException
 	{
-		final MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
-		messageDigest.reset();
-		messageDigest.update(bytes);
-		final byte[] digest = messageDigest.digest();
-		final StringBuilder hexView = new StringBuilder();
-		for (final byte element : digest)
-		{
-			final String intAsHex = Integer.toHexString(0xFF & element);
-			if (intAsHex.length() == 1)
-			{
-				hexView.append('0');
-			}
-			hexView.append(intAsHex);
-		}
-		return hexView.toString();
+		return getChecksum(algorithm, bytes);
 	}
 
 	/**
-	 * Gets the checksum from the given byte array with an instance of.
+	 * Gets the checksum from the given {@link Byte} object array
 	 *
 	 * @param bytes
-	 *            the Byte object array.
+	 *            the {@link Byte} object array
 	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
-	 * @return The checksum from the file as a String object.
+	 *            the {@link Algorithm} object that provides the algorithm as {@link String} object
+	 *            to get the checksum. This can be for instance "MD2", "MD5", "SHA-1", "SHA-256",
+	 *            "SHA-384" or "SHA-512"
+	 * @return The checksum from the given {@link Byte} object array as {@link String} object
 	 * @throws NoSuchAlgorithmException
-	 *             Is thrown if the algorithm is not supported or does not exists.
-	 *             {@link MessageDigest} object.
+	 *             Is thrown if the algorithm is not supported or does not exist
 	 */
 	public static String getChecksum(final Byte[] bytes, final Algorithm algorithm)
 		throws NoSuchAlgorithmException
@@ -138,17 +99,16 @@ public final class ByteArrayChecksumExtensions
 	}
 
 	/**
-	 * Gets the checksum from the given byte array with an instance of.
+	 * Gets the checksum from the given {@link Byte} object array
 	 *
 	 * @param bytes
-	 *            the Byte object array.
+	 *            the {@link Byte} object array
 	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
-	 * @return The checksum from the file as a String object.
+	 *            the algorithm to get the checksum. This can be for instance "MD2", "MD5", "SHA-1",
+	 *            "SHA-256", "SHA-384" or "SHA-512"
+	 * @return The checksum from the given {@link Byte} object array as {@link String} object
 	 * @throws NoSuchAlgorithmException
-	 *             Is thrown if the algorithm is not supported or does not exists.
-	 *             {@link MessageDigest} object.
+	 *             Is thrown if the algorithm is not supported or does not exist
 	 */
 	public static String getChecksum(final Byte[] bytes, final String algorithm)
 		throws NoSuchAlgorithmException
@@ -157,11 +117,54 @@ public final class ByteArrayChecksumExtensions
 	}
 
 	/**
+	 * Gets the checksum from the given byte arrays with the given algorithm
+	 *
+	 * @param algorithm
+	 *            the {@link Algorithm} object that provides the algorithm as {@link String} object
+	 *            to get the checksum. This can be for instance "MD2", "MD5", "SHA-1", "SHA-256",
+	 *            "SHA-384" or "SHA-512"
+	 * @param byteArrays
+	 *            the array of byte arrays
+	 * @return The checksum from the given byte arrays as {@link String} object
+	 * @throws NoSuchAlgorithmException
+	 *             Is thrown if the algorithm is not supported or does not exist
+	 */
+	public static String getChecksum(final Algorithm algorithm, final byte[]... byteArrays)
+		throws NoSuchAlgorithmException
+	{
+		return getChecksum(algorithm.getAlgorithm(), byteArrays);
+	}
+
+	/**
+	 * Gets the checksum from the given byte arrays with the given algorithm
+	 *
+	 * @param algorithm
+	 *            the algorithm to get the checksum. This can be for instance "MD2", "MD5", "SHA-1",
+	 *            "SHA-256", "SHA-384" or "SHA-512".
+	 * @param byteArrays
+	 *            the array of byte arrays
+	 * @return The checksum from the given byte arrays as {@link String} object
+	 * @throws NoSuchAlgorithmException
+	 *             Is thrown if the algorithm is not supported or does not exist
+	 */
+	public static String getChecksum(final String algorithm, final byte[]... byteArrays)
+		throws NoSuchAlgorithmException
+	{
+		final MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
+		messageDigest.reset();
+		for (byte[] byteArray : byteArrays)
+		{
+			messageDigest.update(byteArray);
+		}
+		return encodeHex(messageDigest.digest());
+	}
+
+	/**
 	 * Gets the checksum from the given byte array with an instance of {@link Adler32} object
 	 *
 	 * @param bytes
-	 *            The byte array.
-	 * @return The checksum from the byte array as long.
+	 *            The byte array
+	 * @return The checksum from the byte array as long value
 	 */
 	public static long getCheckSumAdler32(final byte[] bytes)
 	{
@@ -174,8 +177,8 @@ public final class ByteArrayChecksumExtensions
 	 * Gets the checksum as hexadecimal string from the given byte array
 	 *
 	 * @param bytes
-	 *            The byte array.
-	 * @return The checksum from the byte array as long.
+	 *            The byte array
+	 * @return The checksum from the byte array as long value
 	 */
 	public static String getCheckSumAdler32HexString(final byte[] bytes)
 	{
@@ -186,8 +189,8 @@ public final class ByteArrayChecksumExtensions
 	 * Gets the checksum from the given byte array with an instance of {@link CRC32} object
 	 *
 	 * @param bytes
-	 *            The byte array.
-	 * @return The checksum from the byte array as long
+	 *            The byte array
+	 * @return The checksum from the byte array as long value
 	 */
 	public static long getCheckSumCRC32(final byte[] bytes)
 	{
@@ -200,12 +203,34 @@ public final class ByteArrayChecksumExtensions
 	 * Gets the checksum from the given byte array with an instance of {@link CRC32} object
 	 *
 	 * @param bytes
-	 *            The byte array.
-	 * @return The checksum from the byte array as long
+	 *            The byte array
+	 * @return The checksum from the byte array as hex {@link String} object
 	 */
 	public static String getCheckSumCRC32HexString(final byte[] bytes)
 	{
 		return normalizeCheckSumCRC32HexStringLength(Long.toHexString(getCheckSumCRC32(bytes)));
+	}
+
+	/**
+	 * Encode the given byte array to hex string
+	 *
+	 * @param bytes
+	 *            the byte array
+	 * @return the hex {@link String} object from the given byte array
+	 */
+	public static String encodeHex(byte[] bytes)
+	{
+		final StringBuilder hexView = new StringBuilder();
+		for (final byte currentByte : bytes)
+		{
+			final String intAsHex = Integer.toHexString(0xFF & currentByte);
+			if (intAsHex.length() == 1)
+			{
+				hexView.append('0');
+			}
+			hexView.append(intAsHex);
+		}
+		return hexView.toString();
 	}
 
 	private static byte[] toByteArray(Byte[] bytes)

@@ -20,19 +20,21 @@
  */
 package io.github.astrapi69.checksum;
 
+import io.github.astrapi69.crypt.api.algorithm.Algorithm;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 import java.util.zip.Adler32;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedInputStream;
 
-import io.github.astrapi69.crypt.api.algorithm.Algorithm;
-
 /**
- * The class {@link FileChecksumExtensions} is a utility class for computing checksum from files and
- * byte arrays.
+ * The class {@link FileChecksumExtensions} provides algorithms for computing checksum from files
  *
  * @author Asterios Raptis
  * @version 1.0
@@ -44,19 +46,20 @@ public final class FileChecksumExtensions
 	}
 
 	/**
-	 * Gets the checksum from the given file with an instance of the given algorithm.
+	 * Gets the checksum from the given {@link File} object with an instance of the given
+	 * {@link Algorithm} object
 	 *
 	 * @param file
-	 *            the file.
+	 *            the {@link File} object
 	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
-	 * @return The checksum from the file as a String object.
+	 *            the {@link Algorithm} object that provides the algorithm as {@link String} object
+	 *            to get the checksum. This can be for instance "MD2", "MD5", "SHA-1", "SHA-256",
+	 *            "SHA-384" or "SHA-512"
+	 * @return The checksum from the given {@link File} object as {@link String} object
 	 * @throws NoSuchAlgorithmException
-	 *             Is thrown if the algorithm is not supported or does not exists.
-	 *             {@link java.security.MessageDigest} object.
+	 *             Is thrown if the algorithm is not supported or does not exist
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
 	public static String getChecksum(final File file, final Algorithm algorithm)
 		throws NoSuchAlgorithmException, IOException
@@ -65,19 +68,19 @@ public final class FileChecksumExtensions
 	}
 
 	/**
-	 * Gets the checksum from the given file. If the flag crc is true than the CheckedInputStream is
-	 * constructed with an instance of <code>java.util.zip.CRC32</code> otherwise with an instance
-	 * of <code>java.util.zip.Adler32</code>.
+	 * Gets the checksum from the given {@link File} object. If the flag crc is true then the
+	 * CheckedInputStream is constructed with an instance of <code>java.util.zip.CRC32</code>
+	 * otherwise with an instance of <code>java.util.zip.Adler32</code>
 	 *
 	 * @param file
-	 *            The file The file from what to get the checksum.
+	 *            The {@link File} object to resolve the checksum
 	 * @param crc
-	 *            if the flag crc is true than the CheckedInputStream is constructed with an
+	 *            if the flag crc is true then the CheckedInputStream is constructed with an
 	 *            instance of {@link java.util.zip.CRC32} object otherwise it is constructed with an
-	 *            instance of{ @link java.util.zip.Adler32} object.
-	 * @return The checksum from the given file as long.
+	 *            instance of {@link java.util.zip.Adler32} object
+	 * @return The checksum from the given {@link File} object as long value
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
 	public static long getChecksum(final File file, final boolean crc) throws IOException
 	{
@@ -98,35 +101,40 @@ public final class FileChecksumExtensions
 	}
 
 	/**
-	 * Gets the checksum from the given file with an instance of the given algorithm.
+	 * Gets the checksum from the given {@link File} object with an instance of the given algorithm
 	 *
 	 * @param file
-	 *            the file.
+	 *            the {@link File} object
 	 * @param algorithm
-	 *            the algorithm to get the checksum. This could be for instance "MD4", "MD5",
-	 *            "SHA-1", "SHA-256", "SHA-384" or "SHA-512".
-	 * @return The checksum from the file as a String object.
+	 *            the algorithm to get the checksum. This can be for instance "MD2", "MD5", "SHA-1",
+	 *            "SHA-256", "SHA-384" or "SHA-512".
+	 * @return The checksum from the given {@link File} object as {@link String} object
 	 * @throws NoSuchAlgorithmException
-	 *             Is thrown if the algorithm is not supported or does not exists.
+	 *             Is thrown if the algorithm is not supported or does not exist
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
 	public static String getChecksum(final File file, final String algorithm)
 		throws NoSuchAlgorithmException, IOException
 	{
+		if (file.isDirectory())
+		{
+			DirectoryChecksum directoryChecksum = new DirectoryChecksum(algorithm);
+			return directoryChecksum.update(file.toPath());
+		}
 		return ByteArrayChecksumExtensions.getChecksum(Files.readAllBytes(file.toPath()),
 			algorithm);
 	}
 
 	/**
-	 * Gets the checksum from the given file with an instance of {@link java.util.zip.Adler32}
+	 * Gets the checksum from the given {@link File} object with an instance of {@link Adler32}
 	 * object
 	 *
 	 * @param file
-	 *            The file.
-	 * @return The checksum from the file as long.
+	 *            The {@link File} object
+	 * @return The checksum from the {@link File} object as long value
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
 	public static long getCheckSumAdler32(final File file) throws IOException
 	{
@@ -134,14 +142,14 @@ public final class FileChecksumExtensions
 	}
 
 	/**
-	 * Gets the checksum from the given file with an instance of {@link java.util.zip.Adler32}
+	 * Gets the checksum from the given {@link File} object with an instance of {@link Adler32}
 	 * object
 	 *
 	 * @param file
-	 *            The file.
-	 * @return The checksum from the file as long.
+	 *            The {@link File} object
+	 * @return The checksum from the given {@link File} object as {@link String} object
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
 	public static String getCheckSumAdler32HexString(final File file) throws IOException
 	{
@@ -150,13 +158,13 @@ public final class FileChecksumExtensions
 	}
 
 	/**
-	 * Gets the checksum from the given file with an instance of {@link java.util.zip.CRC32} object
+	 * Gets the checksum from the given {@link File} object with an instance of {@link CRC32} object
 	 *
 	 * @param file
-	 *            The file.
-	 * @return The checksum from the file as long.
+	 *            The {@link File} object
+	 * @return The checksum from the {@link File} object as long value
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
 	public static long getCheckSumCRC32(final File file) throws IOException
 	{
@@ -164,13 +172,13 @@ public final class FileChecksumExtensions
 	}
 
 	/**
-	 * Gets the checksum from the given file with an instance of {@link java.util.zip.CRC32} object
+	 * Gets the checksum from the given {@link File} object with an instance of {@link CRC32} object
 	 *
 	 * @param file
-	 *            The file.
-	 * @return The checksum from the file as long.
+	 *            The {@link File} object
+	 * @return The checksum from the given {@link File} object as {@link String} object
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
 	public static String getCheckSumCRC32HexString(final File file) throws IOException
 	{
