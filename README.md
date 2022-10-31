@@ -14,7 +14,9 @@
 
 </div>
 
-Utility library that provides extension classes for calculate checksums for:
+Utility library that provides extension classes that provides the following features:
+
+calculate checksums for:
 
 * byte arrays
 * byte object arrays
