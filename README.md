@@ -14,8 +14,12 @@
 
 </div>
 
-Utility library that provides utility classes for calculate checksums for files, byte arrays and
-objects
+Utility library that provides extension classes for calculate checksums for:
+
+* byte arrays
+* byte object arrays
+* files and directories
+* string and java objects
 
 > Please support this project by simply putting a Github <!-- Place this tag where you want the button to render. -->
 <a class="github-button" href="https://github.com/astrapi69/checksum-up" data-icon="octicon-star" aria-label="Star astrapi69/checksum-up on GitHub">Star ⭐</a>
