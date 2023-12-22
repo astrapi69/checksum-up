@@ -32,18 +32,20 @@ calculate checksums for:
 
 ## gradle dependency
 
+Replace the variable ${latestVersion} with the current latest version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/checksum-up/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/checksum-up)
+
 You can first define the version in the ext section and add than the following gradle dependency to
 your project `build.gradle` if you want to import the core functionality of checksum-up:
 
 define version in file gradle.properties
 ```
-checksumUpVersion=2.2
+checksumUpVersion=${latestVersion}
 ```
 
 or in build.gradle ext area
 
 ```
-    checksumUpVersion = '2.2'
+    checksumUpVersion = '${latestVersion}'
 ```
 
 and than add the dependency to the dependencies area
@@ -66,7 +68,7 @@ Than you can add the dependency to your dependencies:
     <properties>
             ...
         <!-- CHECKSUM-UP VERSION -->
-        <checksum-up.version>2.2</checksum-up.version>
+        <checksum-up.version>${latestVersion}</checksum-up.version>
             ...
     </properties>
             ...
@@ -80,6 +82,30 @@ Than you can add the dependency to your dependencies:
             </dependency>
             ...
         </dependencies>
+
+## 📸 Snapshots
+
+[![Snapshot](https://img.shields.io/badge/dynamic/xml?url=https://oss.sonatype.org/service/local/repositories/snapshots/content/io/github/astrapi69/checksum-up/maven-metadata.xml&label=snapshot&color=red&query=.//versioning/latest)](https://oss.sonatype.org/content/repositories/snapshots/io/github/astrapi69/checksum-up/)
+
+This section describes how to import snapshot versions into your project.
+Add the following code snippet to your gradle file in the repositories section:
+```
+repositories {
+   //...
+```
+```groovy
+    maven {
+        name "Sonatype Nexus Snapshots"
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+        mavenContent {
+            snapshotsOnly()
+        }
+    }
+```
+```
+}
+```
+
 
 # Donations
 
