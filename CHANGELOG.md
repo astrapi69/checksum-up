@@ -1,9 +1,21 @@
 ## Change log
 ----------------------
 
-Version 2.3-SNAPSHOT
+Version 3-SNAPSHOT
 -------------
 
+CHANGED:
+
+- update to jdk version 17
+- update gradle to new version 8.5
+- update of gradle-plugin dependency 'com.github.ben-manes.versions.gradle.plugin' to new version 0.50.0
+- update of gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle' to new minor version 5.2.1
+- update of gradle-plugin dependency 'com.diffplug.spotless:spotless-plugin-gradle' to new minor version 6.23.3
+- update of dependency crypt-api to new version to 8.7
+- update of test dependency file-worker to new minor version 17.1
+- update of test dependency test-objects to new minor version 8.2
+- update of test dependency 'com.github.meanbeanlib:meanbean' to new version 3.0.0-M9
+- update of test dependency testng to new patch version 7.8.0
 
 
 Version 2.2

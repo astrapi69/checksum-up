@@ -20,10 +20,10 @@
  */
 package io.github.astrapi69.checksum;
 
-import io.github.astrapi69.crypt.api.algorithm.Algorithm;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import io.github.astrapi69.crypt.api.algorithm.Algorithm;
 
 /**
  * The class {@link StringChecksumExtensions} provides algorithms for computing checksum from string

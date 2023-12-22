@@ -20,18 +20,15 @@
  */
 package io.github.astrapi69.checksum;
 
-import io.github.astrapi69.crypt.api.algorithm.Algorithm;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Objects;
 import java.util.zip.Adler32;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedInputStream;
+
+import io.github.astrapi69.crypt.api.algorithm.Algorithm;
 
 /**
  * The class {@link FileChecksumExtensions} provides algorithms for computing checksum from files

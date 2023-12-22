@@ -20,14 +20,14 @@
  */
 package io.github.astrapi69.checksum;
 
+import static io.github.astrapi69.checksum.ByteArrayChecksumExtensions.encodeHex;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
-
-import static io.github.astrapi69.checksum.ByteArrayChecksumExtensions.encodeHex;
 
 public class DirectoryChecksum
 {
