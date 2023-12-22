@@ -18,7 +18,9 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-module checksum.up {
+module checksum.up
+{
 	requires crypt.api;
+
 	exports io.github.astrapi69.checksum;
 }
