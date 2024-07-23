@@ -8,6 +8,11 @@ ADDED:
 
 - new libs.versions.toml file for new automatic catalog versions update
 
+CHANGED:
+
+- update of dependency crypt-api to new version to 9.3
+- update of test dependency file-worker to new minor version 17.3
+
 Version 3
 -------------
 

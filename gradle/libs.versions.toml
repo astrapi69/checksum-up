@@ -1,6 +1,6 @@
 [versions]
-crypt-api-version = "9"
-file-worker-version = "17.2"
+crypt-api-version = "9.3"
+file-worker-version = "17.3"
 gradle-plugin-grgit-version = "5.2.2"
 gradle-plugin-license-version = "0.16.1"
 gradle-plugin-spotless-version = "7.0.0.BETA1"
