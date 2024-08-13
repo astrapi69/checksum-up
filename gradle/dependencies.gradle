@@ -1,8 +1,5 @@
-
 dependencies {
-    implementation("io.github.astrapi69:crypt-api:$cryptApiVersion")
-    testImplementation("io.github.astrapi69:file-worker:$fileWorkerVersion")
-    testImplementation("io.github.astrapi69:test-object:$testObjectVersion")
-    testImplementation("com.github.meanbeanlib:meanbean:$meanbeanVersion")
-    testImplementation("org.testng:testng:$testngVersion")
+    implementation libs.crypt.api
+    // Note: use of bundles...
+    testImplementation libs.bundles.unit.testing
 }
