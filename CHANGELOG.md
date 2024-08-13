@@ -1,7 +1,7 @@
 ## Change log
 ----------------------
 
-Version 3.1-SNAPSHOT
+Version 3.1
 -------------
 
 ADDED:
@@ -10,8 +10,10 @@ ADDED:
 
 CHANGED:
 
+- update gradle to new version 8.9
 - update of dependency crypt-api to new version to 9.3
 - update of test dependency file-worker to new minor version 17.3
+- name of module renamed to 'io.github.astrapisixtynine.checksum.up'
 
 Version 3
 -------------
