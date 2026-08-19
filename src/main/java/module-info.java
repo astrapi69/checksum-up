@@ -20,7 +20,7 @@
  */
 module io.github.astrapisixtynine.checksum.up
 {
-	requires io.github.astrapisixtynine.crypt.api;
+	requires io.github.astrapi69.crypt.api;
 
 	exports io.github.astrapi69.checksum;
 }

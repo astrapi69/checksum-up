@@ -1,5 +1,5 @@
 [versions]
-crypt-api-version = "9.3"
+crypt-api-version = "9.6"
 file-worker-version = "19.0"
 gradle-plugin-grgit-version = "5.3.3"
 gradle-plugin-license-version = "0.16.1"
