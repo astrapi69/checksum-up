@@ -79,7 +79,16 @@ signing {
     if (releaseVersion) {
         def signingKey = System.getenv("GPG_PRIVATE_KEY")
         def signingPassphrase = System.getenv("GPG_PASSPHRASE")
-        if (signingKey && signingPassphrase) {
+        // The signing subkey's short id, its last 8 hex digits, when GPG_PRIVATE_KEY is an export of
+        // that subkey alone and the primary key stays offline (astrapi69/lethenon,
+        // docs/launch/release-key.md; #6). Without it Gradle takes the primary key, which such an
+        // export holds only as a stub, and fails; Gradle 9.7.1 refused the 16-digit form
+        // (astrapi69/lethenon#155). Unset, the call is the one for a full key, as before.
+        def signingKeyId = System.getenv("GPG_KEY_ID")
+        if (signingKey && signingPassphrase && signingKeyId) {
+            useInMemoryPgpKeys(signingKeyId, signingKey, signingPassphrase)
+        }
+        else if (signingKey && signingPassphrase) {
             useInMemoryPgpKeys(signingKey, signingPassphrase)
         }
         else if (!project.hasProperty("signing.keyId")) {
