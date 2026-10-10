@@ -1,6 +1,14 @@
 ## Change log
 ----------------------
 
+Version 3.3 (unreleased)
+-------------
+
+CHANGED:
+
+- publishing goes through the Central Portal with the nmcp plugin, as in the rest of the family: the OSSRH staging endpoint the build uploaded to is shut down, and with it the make targets central-list, central-upload, central-upload-repository, central-drop and release; make publish-central uploads by hand, with CONFIRM=yes
+- signing follows the key, not the version form: a snapshot is signed when a key is there, so a manual snapshot run of the publish workflow rehearses the whole release path including the signature, and a release without a key is refused (#7)
+
 Version 3.2-SNAPSHOT
 -------------
 

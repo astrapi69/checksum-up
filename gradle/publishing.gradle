@@ -22,18 +22,6 @@ javadoc {
 }
 
 publishing {
-    repositories {
-        maven {
-            name = "central"
-            def releasesRepoUrl = "$projectRepositoriesReleasesRepoUrl"
-            def snapshotsRepoUrl = "$projectRepositoriesSnapshotsRepoUrl"
-            url = releaseVersion ? releasesRepoUrl : snapshotsRepoUrl
-            credentials {
-                username = System.getenv("CENTRAL_USERNAME") ?: (project.findProperty("centralUsername") ?: "")
-                password = System.getenv("CENTRAL_PASSWORD") ?: (project.findProperty("centralPassword") ?: "")
-            }
-        }
-    }
     publications {
         mavenJava(MavenPublication) {
             artifactId = "$rootProject.name"
@@ -75,26 +63,61 @@ publishing {
     }
 }
 
+// Central Portal publishing, through the per-project "com.gradleup.nmcp" plugin as in crypt-api:
+// checksum-up is a single-project build, so there is nothing for the settings plugin to aggregate.
+// The OSSRH staging endpoint this build uploaded to before is shut down (#7).
+nmcp {
+    publishAllPublicationsToCentralPortal {
+        // a user token from https://central.sonatype.com/ (Account -> Generate User Token), not the
+        // legacy OSSRH username and password
+        username = System.getenv("CENTRAL_PORTAL_TOKEN_USERNAME") ?: ""
+        password = System.getenv("CENTRAL_PORTAL_TOKEN_PASSWORD") ?: ""
+        publishingType = "USER_MANAGED"
+    }
+}
+
+// Signing follows the KEY, not the version form, so a manual snapshot publish rehearses the whole
+// release path including the signature (#7, as mystic-crypt#137 and crypt-api#18).
+//
+//   release  + key      sign
+//   snapshot + key      sign, so the rehearsal covers the last step too
+//   snapshot, no key    skip - a local build needs no signature
+//   release,  no key    the publish task REFUSES; publishing a release unsigned is worse than
+//                       not publishing it
+def signingKey = System.getenv("GPG_PRIVATE_KEY")
+def signingPassphrase = System.getenv("GPG_PASSPHRASE")
+// The signing subkey's short id, its last 8 hex digits, when GPG_PRIVATE_KEY is an export of that
+// subkey alone and the primary key stays offline (astrapi69/lethenon, docs/launch/release-key.md;
+// #6). Without it Gradle takes the primary key, which such an export holds only as a stub, and
+// fails; Gradle 9.7.1 refused the 16-digit form (astrapi69/lethenon#155). Unset, the call is the one
+// for a full key, as before.
+def signingKeyId = System.getenv("GPG_KEY_ID")
+def hasInMemoryKey = signingKey && signingPassphrase
+def hasLocalKey = ["signing.keyId", "signing.gnupg.keyName", "signing.secretKeyRingFile"]
+    .any { project.hasProperty(it) }
+
 signing {
-    if (releaseVersion) {
-        def signingKey = System.getenv("GPG_PRIVATE_KEY")
-        def signingPassphrase = System.getenv("GPG_PASSPHRASE")
-        // The signing subkey's short id, its last 8 hex digits, when GPG_PRIVATE_KEY is an export of
-        // that subkey alone and the primary key stays offline (astrapi69/lethenon,
-        // docs/launch/release-key.md; #6). Without it Gradle takes the primary key, which such an
-        // export holds only as a stub, and fails; Gradle 9.7.1 refused the 16-digit form
-        // (astrapi69/lethenon#155). Unset, the call is the one for a full key, as before.
-        def signingKeyId = System.getenv("GPG_KEY_ID")
-        if (signingKey && signingPassphrase && signingKeyId) {
+    if (hasInMemoryKey) {
+        if (signingKeyId) {
             useInMemoryPgpKeys(signingKeyId, signingKey, signingPassphrase)
-        }
-        else if (signingKey && signingPassphrase) {
+        } else {
             useInMemoryPgpKeys(signingKey, signingPassphrase)
         }
-        else if (!project.hasProperty("signing.keyId")) {
-            // fall back to the local gpg command with the key from signing.gnupg.keyName
-            useGpgCmd()
-        }
         sign publishing.publications.mavenJava
+    }
+    else if (hasLocalKey) {
+        // the local gpg command with the key from signing.gnupg.keyName
+        useGpgCmd()
+        sign publishing.publications.mavenJava
+    }
+}
+
+tasks.matching { it.name.startsWith("nmcpPublishAllPublicationsToCentralPortal") }.configureEach {
+    doFirst {
+        if (releaseVersion && !hasInMemoryKey && !hasLocalKey) {
+            throw new GradleException("Refusing to publish ${project.version} unsigned. "
+                + "Set GPG_PRIVATE_KEY and GPG_PASSPHRASE, or a local signing.keyId / "
+                + "signing.gnupg.keyName / signing.secretKeyRingFile property.")
+        }
     }
 }
