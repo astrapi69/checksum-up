@@ -5,12 +5,11 @@
 [![Java CI with Gradle](https://github.com/astrapi69/checksum-up/actions/workflows/gradle.yml/badge.svg)](https://github.com/astrapi69/checksum-up/actions/workflows/gradle.yml)
 [![Coverage Status](https://codecov.io/gh/astrapi69/checksum-up/branch/develop/graph/badge.svg)](https://codecov.io/gh/astrapi69/checksum-up)
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/checksum-up.svg?style=flat)](https://github.com/astrapi69/checksum-up/issues)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/checksum-up/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/checksum-up)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.astrapi69/checksum-up)](https://central.sonatype.com/artifact/io.github.astrapi69/checksum-up)
 [![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/checksum-up.svg)](http://www.javadoc.io/doc/io.github.astrapi69/checksum-up)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
 [![Hits Of Code](https://hitsofcode.com/github/astrapi69/checksum-up?branch=develop)](https://hitsofcode.com/github/astrapi69/checksum-up/view?branch=develop)
-[![Lines Of Code](https://tokei.rs/b1/github/astrapi69/checksum-up)](https://github.com/astrapi69/checksum-up)
 
 </div>
 
@@ -32,7 +31,7 @@ calculate checksums for:
 
 ## gradle dependency
 
-Replace the variable ${latestVersion} with the current latest version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/checksum-up/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/checksum-up)
+Replace the variable ${latestVersion} with the current latest version: [![Maven Central](https://img.shields.io/maven-central/v/io.github.astrapi69/checksum-up)](https://central.sonatype.com/artifact/io.github.astrapi69/checksum-up)
 
 You can first define the version in the ext section and add than the following gradle dependency to
 your project `build.gradle` if you want to import the core functionality of checksum-up:
@@ -56,9 +55,8 @@ implementation("io.github.astrapi69:checksum-up:$checksumUpVersion")
 
 ## Maven dependency
 
-Maven dependency is now on sonatype. Check
-out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~checksum-up~~~)
-for latest snapshots and releases.
+The library is on Maven Central. Check out [Maven Central](https://central.sonatype.com/artifact/io.github.astrapi69/checksum-up) for the latest release; snapshots
+are described below.
 
 Add the following maven dependency to your project `pom.xml` if you want to import the core
 functionality of checksum-up:
@@ -85,7 +83,7 @@ Than you can add the dependency to your dependencies:
 
 ## 📸 Snapshots
 
-[![Snapshot](https://img.shields.io/badge/dynamic/xml?url=https://oss.sonatype.org/service/local/repositories/snapshots/content/io/github/astrapi69/checksum-up/maven-metadata.xml&label=snapshot&color=red&query=.//versioning/latest)](https://oss.sonatype.org/content/repositories/snapshots/io/github/astrapi69/checksum-up/)
+[![Snapshot](https://img.shields.io/badge/dynamic/xml?url=https://central.sonatype.com/repository/maven-snapshots/io/github/astrapi69/checksum-up/maven-metadata.xml&label=snapshot&color=red&query=.//versioning/latest)](https://central.sonatype.com/repository/maven-snapshots/io/github/astrapi69/checksum-up/maven-metadata.xml)
 
 This section describes how to import snapshot versions into your project.
 Add the following code snippet to your gradle file in the repositories section:
@@ -95,8 +93,8 @@ repositories {
 ```
 ```groovy
     maven {
-        name "Sonatype Nexus Snapshots"
-        url "https://oss.sonatype.org/content/repositories/snapshots"
+        name "Central Portal Snapshots"
+        url "https://central.sonatype.com/repository/maven-snapshots/"
         mavenContent {
             snapshotsOnly()
         }
@@ -165,11 +163,6 @@ or over Monero(XMR) with:
 src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/49bqeRQ7Bf49oJFVC72pqpe5hFbb62pfXDYPdLsadGGF81KZW2ZfrPZ8PbAVu5X2v1TYAspeczMya3cYQysNS4usRRPQHVw.png"
 alt="Donation Monero Wallet" width="250"/>
 
-or over flattr:
-
-<a href="http://flattr.com/thing/4067696/astrapi69checksum-up-on-GitHub" target="_blank">
-<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" style="border: none"  />
-</a>
 
 ## Note
 
@@ -235,9 +228,9 @@ Do not hesitate to contact the checksum-up developers with your questions, conce
 
 ## Credits
 
-|**Nexus Sonatype repositories**|
+|**Maven Central**|
 |     :---:      |
-|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/checksum-up.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~checksum-up~~~)|
+|[![Maven Central](https://img.shields.io/maven-central/v/io.github.astrapi69/checksum-up?style=for-the-badge)](https://central.sonatype.com/artifact/io.github.astrapi69/checksum-up)|
 |Special thanks to [sonatype repository](https://www.sonatype.com) for providing a free maven repository service for open source projects|
 |     <img width=1000/>     |
 
