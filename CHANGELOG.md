@@ -1,11 +1,19 @@
 ## Change log
 ----------------------
 
-Version 3.3 (unreleased)
+Version 4 (unreleased)
 -------------
+
+**checksum-up 4 requires JDK 25 or newer, at build and at runtime.** Its classes are compiled for JDK 25
+(class file major 69) and do not load on an older JVM; stay on 3.2 for JDK 17 (#23).
 
 CHANGED:
 
+- JDK 25 (#23); CI and the publish workflow set up JDK 25 themselves instead of letting the toolchain download
+  one, and `.sdkmanrc` names 25.0.4-tem for local builds (#24)
+- crypt-api 10.3, from 9.6; file-worker 19.1, from 19.0; for the tests test-object 9.1, from 9, which brings
+  jobj-compare 12 and with it commons-beanutils 1.11.0 instead of 1.9.4, open to GHSA-wxr5-93ph-8wr9 (#23)
+- build plugins: nmcp 1.6.2, spotless 8.10.4, version-catalog-update 1.1.2, versions 0.66.0 (#23)
 - publishing goes through the Central Portal with the nmcp plugin, as in the rest of the family: the OSSRH staging endpoint the build uploaded to is shut down, and with it the make targets central-list, central-upload, central-upload-repository, central-drop and release; make publish-central uploads by hand, with CONFIRM=yes
 - signing follows the key, not the version form: a snapshot is signed when a key is there, so a manual snapshot run of the publish workflow rehearses the whole release path including the signature, and a release without a key is refused (#7)
 
