@@ -192,6 +192,36 @@ public class DirectoryChecksumTest
 	}
 
 	/**
+	 * Test method for {@link DirectoryChecksum#update(Path)}: a subdirectory that cannot be listed
+	 * fails the computation with the {@link IOException} of the walk, not with the
+	 * {@link java.io.UncheckedIOException} that carries it
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@Test
+	public void testUpdateWithUnlistableSubdirectory() throws IOException
+	{
+		Path directory = createTree(tree("sub", null, "sub/a.txt", "alpha"));
+		Path subdirectory = directory.resolve("sub");
+		subdirectory.toFile().setReadable(false);
+		try
+		{
+			if (Files.isReadable(subdirectory))
+			{
+				throw new SkipException(
+					"the directory stays readable for this user, root for example");
+			}
+			expectThrows(AccessDeniedException.class,
+				() -> new DirectoryChecksum(SHA_256).update(directory));
+		}
+		finally
+		{
+			subdirectory.toFile().setReadable(true);
+		}
+	}
+
+	/**
 	 * Test method for {@link DirectoryChecksum#update(Path)}: the checksum of a known tree is the
 	 * one its documented form gives. The expected value was computed outside this library, with
 	 * Python's hashlib over the sorted entries, each as its marker 'D' or 'F', the length of its
