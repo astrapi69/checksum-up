@@ -26,9 +26,13 @@
 package io.github.astrapi69.checksum;
 
 import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertFalse;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.security.NoSuchAlgorithmException;
 
 import org.meanbean.test.BeanTester;
@@ -272,7 +276,10 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 	}
 
 	/**
-	 * Test method for {@link FileChecksumExtensions#getChecksum(File, String)}
+	 * Test method for {@link FileChecksumExtensions#getChecksum(File, String)} with a directory
+	 * tree built at runtime. The expected values were computed outside this library, with the
+	 * hashlib of Python over the form {@link DirectoryChecksum} documents. Python has no MD2, so
+	 * for MD2 the test checks the length and that the checksum is not the one of empty input
 	 *
 	 * @throws NoSuchAlgorithmException
 	 *             is thrown if instantiation of the SecretKeyFactory object fails.
@@ -287,53 +294,74 @@ public class FileChecksumExtensionsTest extends AbstractTestCase<Long, Long>
 		String actual;
 		int expectedLength;
 		int actualLength;
-		File srcTestResourcesDir = PathFinder.getSrcTestResourcesDir();
+		File directory = newDirectoryTree();
 		expected = "8350e5a3e24c153df2275c9f80692773";
-		actual = FileChecksumExtensions.getChecksum(srcTestResourcesDir,
+		actual = FileChecksumExtensions.getChecksum(directory,
 			ChecksumAlgorithm.MD2.getAlgorithm());
-		assertEquals(expected, actual);
+		assertFalse("the checksum of empty input", expected.equals(actual));
 		actualLength = actual.length();
 		expectedLength = 32;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "d41d8cd98f00b204e9800998ecf8427e";
-		actual = FileChecksumExtensions.getChecksum(srcTestResourcesDir,
+		expected = "5716a9b88562adec2b345a26960e37e3";
+		actual = FileChecksumExtensions.getChecksum(directory,
 			ChecksumAlgorithm.MD5.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		assertEquals(expectedLength, actualLength);
 
-		expected = "da39a3ee5e6b4b0d3255bfef95601890afd80709";
-		actual = FileChecksumExtensions.getChecksum(srcTestResourcesDir,
+		expected = "c78522deab117c693122d5d977c1e482438a10f9";
+		actual = FileChecksumExtensions.getChecksum(directory,
 			ChecksumAlgorithm.SHA_1.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 40;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
-		actual = FileChecksumExtensions.getChecksum(srcTestResourcesDir,
+		expected = "47c0522975ebe49076c9dae201c9a80c8e07e08e1b669e56a0f7775a6c2819dd";
+		actual = FileChecksumExtensions.getChecksum(directory,
 			ChecksumAlgorithm.SHA_256.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 64;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b";
-		actual = FileChecksumExtensions.getChecksum(srcTestResourcesDir,
+		expected = "d406692df0ed610047d4ad6896a7cd024c0d2be897ff39a9bcca6a2c824c0cd5411cb391736feb27ffe08f6ecc4fefef";
+		actual = FileChecksumExtensions.getChecksum(directory,
 			ChecksumAlgorithm.SHA_384.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 96;
 		assertEquals(expectedLength, actualLength);
 
-		expected = "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e";
-		actual = FileChecksumExtensions.getChecksum(srcTestResourcesDir,
+		expected = "9a63280e3999717e989cc7220864737331719d0e14794faf2a8bfced9d6914e793c2e61043993bb32c6b95c1eb70ac275cd9bc99009bbc00e48138c412a2b17c";
+		actual = FileChecksumExtensions.getChecksum(directory,
 			ChecksumAlgorithm.SHA_512.getAlgorithm());
 		assertEquals(expected, actual);
 		actualLength = actual.length();
 		expectedLength = 128;
 		assertEquals(expectedLength, actualLength);
+	}
+
+	/**
+	 * Creates the tree of a file a.txt with the content "alpha" and a directory sub with a file
+	 * b.txt with the content "beta" in a new temporary directory, deleted when the JVM exits
+	 *
+	 * @return the temporary directory that holds the tree
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	private static File newDirectoryTree() throws IOException
+	{
+		Path directory = Files.createTempDirectory("directory-checksum");
+		directory.toFile().deleteOnExit();
+		Path subdirectory = Files.createDirectory(directory.resolve("sub"));
+		subdirectory.toFile().deleteOnExit();
+		Files.writeString(directory.resolve("a.txt"), "alpha", StandardCharsets.UTF_8).toFile()
+			.deleteOnExit();
+		Files.writeString(subdirectory.resolve("b.txt"), "beta", StandardCharsets.UTF_8).toFile()
+			.deleteOnExit();
+		return directory.toFile();
 	}
 
 	/**

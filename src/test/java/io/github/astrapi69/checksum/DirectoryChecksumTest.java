@@ -27,13 +27,13 @@ package io.github.astrapi69.checksum;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
-import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.expectThrows;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Files;
+import java.nio.file.NotDirectoryException;
 import java.nio.file.Path;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -101,17 +101,40 @@ public class DirectoryChecksumTest
 				{ "flat, same name, other content", tree("a.txt", "alpha"), tree("a.txt", "omega"),
 						false },
 				{ "flat, other names, same content", tree("a.txt", "alpha"), tree("z.txt", "alpha"),
-						true },
+						false },
 				{ "only a subdirectory, other content in it",
 						tree("sub", null, "sub/a.txt", "alpha"),
-						tree("sub", null, "sub/b.txt", "beta"), true },
+						tree("sub", null, "sub/b.txt", "beta"), false },
 				{ "four levels deep, other content in the deepest file",
 						tree("a", null, "a/b", null, "a/b/c", null, "a/b/c/d", null,
 							"a/b/c/d/e.txt", "alpha"),
 						tree("a", null, "a/b", null, "a/b/c", null, "a/b/c/d", null,
 							"a/b/c/d/e.txt", "omega"),
+						false },
+				{ "two empty directories", tree(), tree(), true },
+				{ "four levels deep, same names and same content",
+						tree("a", null, "a/b", null, "a/b/c", null, "a/b/c/d", null,
+							"a/b/c/d/e.txt", "alpha"),
+						tree("a", null, "a/b", null, "a/b/c", null, "a/b/c/d", null,
+							"a/b/c/d/e.txt", "alpha"),
 						true },
-				{ "two empty directories", tree(), tree(), true } };
+				{ "same tree, created in the reverse order",
+						tree("a.txt", "alpha", "m", null, "m/b.txt", "beta", "z.txt", "omega"),
+						tree("z.txt", "omega", "m", null, "m/b.txt", "beta", "a.txt", "alpha"),
+						true },
+				{ "a file beside a subdirectory, other content in the file",
+						tree("a.txt", "alpha", "z", null, "z/b.txt", "beta"),
+						tree("a.txt", "omega", "z", null, "z/b.txt", "beta"), false },
+				{ "a file moved into a subdirectory", tree("sub", null, "a.txt", "alpha"),
+						tree("sub", null, "sub/a.txt", "alpha"), false },
+				{ "a subdirectory renamed", tree("one", null, "one/a.txt", "alpha"),
+						tree("two", null, "two/a.txt", "alpha"), false },
+				{ "an empty subdirectory more", tree("a.txt", "alpha"),
+						tree("a.txt", "alpha", "empty", null), false },
+				{ "an empty file and an empty directory of the same name", tree("x", ""),
+						tree("x", null), false },
+				{ "content moved from one file to the next", tree("a", "ab", "b", "c"),
+						tree("a", "a", "b", "bc"), false } };
 	}
 
 	/**
@@ -164,9 +187,61 @@ public class DirectoryChecksumTest
 		{
 			throw new SkipException("the file stays readable for this user, root for example");
 		}
-		RuntimeException exception = expectThrows(RuntimeException.class,
+		expectThrows(AccessDeniedException.class,
 			() -> new DirectoryChecksum(SHA_256).update(directory));
-		assertTrue(exception.getCause() instanceof AccessDeniedException);
+	}
+
+	/**
+	 * Test method for {@link DirectoryChecksum#update(Path)}: the checksum of a known tree is the
+	 * one its documented form gives. The expected value was computed outside this library, with
+	 * Python's hashlib over the sorted entries, each as its marker 'D' or 'F', the length of its
+	 * UTF-8 relative path as four bytes big-endian, the path and, for a file, the SHA-256 digest of
+	 * its content
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 * @throws NoSuchAlgorithmException
+	 *             Is thrown if the algorithm is not supported
+	 */
+	@Test
+	public void testUpdateWithKnownTree() throws IOException, NoSuchAlgorithmException
+	{
+		Path directory = createTree(tree("sub", null, "sub/b.txt", "beta", "a.txt", "alpha"));
+		assertEquals(checksum(directory),
+			"47c0522975ebe49076c9dae201c9a80c8e07e08e1b669e56a0f7775a6c2819dd");
+	}
+
+	/**
+	 * Test method for {@link DirectoryChecksum#update(Path)}: the same object gives the same
+	 * checksum for the same tree when it is called again
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 * @throws NoSuchAlgorithmException
+	 *             Is thrown if the algorithm is not supported
+	 */
+	@Test
+	public void testUpdateTwiceWithTheSameObject() throws IOException, NoSuchAlgorithmException
+	{
+		Path directory = createTree(tree("a.txt", "alpha", "sub", null, "sub/b.txt", "beta"));
+		DirectoryChecksum directoryChecksum = new DirectoryChecksum(SHA_256);
+		String first = directoryChecksum.update(directory);
+		assertEquals(directoryChecksum.update(directory), first);
+	}
+
+	/**
+	 * Test method for {@link DirectoryChecksum#update(Path)}: a path that is not a directory is
+	 * refused
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@Test
+	public void testUpdateWithFile() throws IOException
+	{
+		Path file = createTree(tree("a.txt", "alpha")).resolve("a.txt");
+		expectThrows(NotDirectoryException.class,
+			() -> new DirectoryChecksum(SHA_256).update(file));
 	}
 
 	/**
